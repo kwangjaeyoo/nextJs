@@ -27,6 +27,7 @@ export default function ItemList() {
         setLoading(false)
       })
     } catch (e: any) {
+      alert(e)
       console.log(e)
     }
   }, [])

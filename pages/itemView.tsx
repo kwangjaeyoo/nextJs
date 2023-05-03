@@ -7,8 +7,6 @@ interface itemProps {
 }
 
 export default function ItemView({ itemList }: itemProps) {
-  console.log('ItemView ' + typeof itemList)
-
   return (
     <>
       {itemList.length > 0 && (
