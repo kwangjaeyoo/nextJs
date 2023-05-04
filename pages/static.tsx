@@ -1,13 +1,13 @@
 import Axios from 'axios'
 import ItemView from './itemView'
 import { itemObjectProps } from './itemList'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps, GetStaticPropsContext } from 'next'
 
 type dataProps = {
   data: itemObjectProps[]
 }
 
-export default function Server({ data }: dataProps) {
+const Static = ({ data }: dataProps) => {
   return (
     <div style={{ paddingLeft: '30px', paddingRight: '30px' }}>
       {data && <ItemView itemList={data} />}
@@ -15,15 +15,21 @@ export default function Server({ data }: dataProps) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<dataProps> = async () => {
-  let data = []
+export default Static
+
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext,
+) => {
+  let data = null
   try {
     const API_URL =
       'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline'
 
-    const res = await Axios.get(API_URL, { timeout: 10000 })
+    const res = await Axios.get(API_URL)
     data = res.data
-  } catch (e: any) {}
+  } catch (e: any) {
+    console.log(e)
+  }
 
   return {
     props: {

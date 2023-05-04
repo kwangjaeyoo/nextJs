@@ -10,24 +10,22 @@ export default function ItemView({ itemList }: itemProps) {
   return (
     <>
       {itemList.length > 0 && (
-        <>
+        <div>
           {itemList.map((item) => (
-            <div key={item.id}>
-              <Link href={`/item/${item.id}`} legacyBehavior>
-                <Item.Group>
-                  <Item style={{ padding: '5px' }}>
-                    <Item.Image size="tiny" src={item.image_link} />
-                    <Item.Content>
-                      <Item.Header as="a">{item.name}</Item.Header>
-                      <Item.Meta>{item.description}</Item.Meta>
-                      <Item.Extra>{item.price}</Item.Extra>
-                    </Item.Content>
-                  </Item>
-                </Item.Group>
-              </Link>
-            </div>
+            <Link key={item.id} href={`/item/${item.id}`}>
+              <Item.Group>
+                <Item style={{ padding: '5px' }}>
+                  <Item.Image size="tiny" src={item.image_link} />
+                  <Item.Content>
+                    <Item.Header>{item.name}</Item.Header>
+                    <Item.Meta>{item.description}</Item.Meta>
+                    <Item.Extra>{item.price}</Item.Extra>
+                  </Item.Content>
+                </Item>
+              </Item.Group>
+            </Link>
           ))}
-        </>
+        </div>
       )}
     </>
   )

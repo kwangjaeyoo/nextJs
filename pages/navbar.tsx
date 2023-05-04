@@ -25,6 +25,8 @@ const Navbar = () => {
         router.push('/itemList')
       } else if (data.name === 'server') {
         router.push('/server')
+      } else if (data.name === 'static') {
+        router.push('/static')
       } else if (data.name === 'language') {
         router.push('/language')
       } else if (data.name === 'mobile') {
@@ -74,6 +76,14 @@ const Navbar = () => {
           onClick={itemClick}
         >
           {t('serverSide')}
+        </Menu.Item>
+
+        <Menu.Item
+          name="static"
+          active={activeItem === 'static'}
+          onClick={itemClick}
+        >
+          static
         </Menu.Item>
 
         <Menu.Item
