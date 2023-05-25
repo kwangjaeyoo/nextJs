@@ -1,9 +1,7 @@
 import Axios from 'axios'
-import type { GetStaticProps } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect, useState } from 'react'
-import { Loader } from 'semantic-ui-react'
 import ItemView from './itemView'
+import useLoadingModal from './hook/useLoadingModal'
 
 export interface itemObjectProps {
   id: number
@@ -14,35 +12,32 @@ export interface itemObjectProps {
 }
 
 export default function ItemList() {
+  const loadingModal = useLoadingModal()
   const [list, setList] = useState<itemObjectProps[]>([])
-  const [loading, setLoading] = useState(true)
 
   const API_URL =
     'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline'
 
-  useEffect(() => {
+  const callApi = async () => {
     try {
-      Axios.get(API_URL).then((res) => {
-        setList(res.data)
-        setLoading(false)
-      })
+      loadingModal.onOpen()
+      const result = await Axios.get(API_URL)
+      setList(result.data)
     } catch (e: any) {
       alert(e)
       console.log(e)
+    } finally {
+      loadingModal.onClose()
     }
+  }
+
+  useEffect(() => {
+    callApi()
   }, [])
 
   return (
     <div style={{ paddingLeft: '30px', paddingRight: '30px' }}>
-      {loading ? (
-        <div style={{ margin: '300px 300px' }}>
-          <Loader active inline="centered">
-            Loading
-          </Loader>
-        </div>
-      ) : (
-        <ItemView itemList={list} />
-      )}
+      <ItemView itemList={list} />
     </div>
   )
 }

@@ -45,12 +45,15 @@ const Navbar = () => {
     }
   }, [])
 
+  let mode = process.env.NODE_ENV
+
   return (
     <div style={{ padding: '30px' }}>
       <div>
         <Header as="h2">
           <Image circular src="/patrick.png" alt="profile" />
           Qxpress smartship !!!
+          <div style={{ color: 'red' }}>{mode} MODE</div>
         </Header>
       </div>
       <Menu>

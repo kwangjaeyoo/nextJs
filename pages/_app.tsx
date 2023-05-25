@@ -7,6 +7,7 @@ import 'semantic-ui-css/semantic.min.css'
 import en from '../public/locales/en/common.json'
 import ko from '../public/locales/ko/common.json'
 import Layout from './layout'
+import LoadingModal from './modal/LoadingModal'
 
 function App({ Component, pageProps }: AppProps) {
   const [hydrated, setHydrated] = React.useState(false)
@@ -20,9 +21,13 @@ function App({ Component, pageProps }: AppProps) {
   }
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <LoadingModal />
+
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   )
 }
 
