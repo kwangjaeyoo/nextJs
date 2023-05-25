@@ -9,7 +9,8 @@ interface LoadingModalStore {
 const useLoadingModal = create<LoadingModalStore>((set) => ({
   isOpen: 0,
   onOpen: () => set((state) => ({ isOpen: state.isOpen + 1 })),
-  onClose: () => set((state) => ({ isOpen: state.isOpen - 1 })),
+  onClose: () =>
+    set((state) => ({ isOpen: state.isOpen > 0 ? state.isOpen - 1 : 0 })),
 }))
 
 export default useLoadingModal
