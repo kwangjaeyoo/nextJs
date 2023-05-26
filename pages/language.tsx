@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { Dropdown, DropdownProps } from 'semantic-ui-react'
 
 export default function Language() {

@@ -15,6 +15,7 @@ import type { AppProps } from 'next/app'
 
 function App({ Component, pageProps }: AppProps) {
   const [hydrated, setHydrated] = React.useState(false)
+
   React.useEffect(() => {
     setHydrated(true)
   }, [])

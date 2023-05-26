@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Item } from 'semantic-ui-react'
+
 import { itemObjectProps } from './itemList'
 
 interface itemProps {
