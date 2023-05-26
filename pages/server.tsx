@@ -1,7 +1,8 @@
 import Axios from 'axios'
-import ItemView from './itemView'
-import { itemObjectProps } from './itemList'
 import { GetServerSideProps } from 'next'
+
+import { itemObjectProps } from './itemList'
+import ItemView from './itemView'
 
 type dataProps = {
   data: itemObjectProps[]

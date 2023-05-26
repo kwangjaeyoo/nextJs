@@ -1,13 +1,17 @@
+import 'semantic-ui-css/semantic.min.css'
+import '../styles/globals.css'
+
 import i18n from 'i18next'
 import { appWithTranslation } from 'next-i18next'
-import type { AppProps } from 'next/app'
 import React from 'react'
 import { initReactI18next } from 'react-i18next'
-import 'semantic-ui-css/semantic.min.css'
+
 import en from '../public/locales/en/common.json'
 import ko from '../public/locales/ko/common.json'
 import Layout from './layout'
 import LoadingModal from './modal/LoadingModal'
+
+import type { AppProps } from 'next/app'
 
 function App({ Component, pageProps }: AppProps) {
   const [hydrated, setHydrated] = React.useState(false)

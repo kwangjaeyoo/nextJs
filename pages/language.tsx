@@ -32,8 +32,7 @@ export default function Language() {
           console.log('onChange ' + data.value)
           if (typeof data.value == 'string') {
             const locale = data.value
-            // i18n.changeLanguage(locale)
-            setSelect(locale)
+            i18n.changeLanguage(locale)
 
             const { pathname, asPath, query } = router
             router.push({ pathname, query }, asPath, { locale: locale })

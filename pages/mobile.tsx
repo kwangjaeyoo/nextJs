@@ -1,5 +1,6 @@
 import { isMobile } from 'react-device-detect'
 import { Button } from 'semantic-ui-react'
+
 import useLoadingModal from './hook/useLoadingModal'
 
 export default function Mobile() {

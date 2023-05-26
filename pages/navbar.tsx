@@ -1,12 +1,10 @@
-import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
-import { Header, Image, Menu, MenuItemProps } from 'semantic-ui-react'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { MenuItemProps } from 'semantic-ui-react'
 
 const Navbar = () => {
   const { t } = useTranslation()
-
-  // console.log('Navbar ?? ' + i18n.language)
 
   const router = useRouter()
   const [activeItem, setActiveItem] = useState('Home')
@@ -48,64 +46,21 @@ const Navbar = () => {
   let mode = process.env.NODE_ENV
 
   return (
-    <div style={{ padding: '30px' }}>
-      <div>
-        <Header as="h2">
-          <Image circular src="/patrick.png" alt="profile" />
-          Qxpress smartship !!!
-          <div style={{ color: 'red' }}>{mode} MODE</div>
-        </Header>
+    <>
+      <div
+        className=" 
+            flex
+            flex-row
+          "
+      >
+        Qxpress !!
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
       </div>
-      <Menu>
-        <Menu.Item
-          name="home"
-          active={activeItem === 'home'}
-          onClick={itemClick}
-        >
-          {t('home')}
-        </Menu.Item>
-
-        <Menu.Item
-          name="item"
-          active={activeItem === 'item'}
-          onClick={itemClick}
-        >
-          {t('itemList')}
-        </Menu.Item>
-
-        <Menu.Item
-          name="server"
-          active={activeItem === 'server'}
-          onClick={itemClick}
-        >
-          {t('serverSide')}
-        </Menu.Item>
-
-        <Menu.Item
-          name="static"
-          active={activeItem === 'static'}
-          onClick={itemClick}
-        >
-          static
-        </Menu.Item>
-
-        <Menu.Item
-          name="language"
-          active={activeItem === 'language'}
-          onClick={itemClick}
-        >
-          {t('language')}
-        </Menu.Item>
-
-        <Menu.Item
-          name="mobile"
-          active={activeItem === 'mobile'}
-          onClick={itemClick}
-        >
-          {t('mobile')}
-        </Menu.Item>
-      </Menu>
-    </div>
+      <div className="flex flex-row font-semibold font">zzzzzzz</div>
+    </>
   )
 }
 
