@@ -1,65 +1,158 @@
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { MenuItemProps } from 'semantic-ui-react'
 
 const Navbar = () => {
   const { t } = useTranslation()
 
   const router = useRouter()
-  const [activeItem, setActiveItem] = useState('Home')
+  const [activeItem, setActiveItem] = useState('')
+  const [isMenuVisible, setMenuVisible] = useState(false)
 
-  function itemClick(
-    e: React.MouseEvent<HTMLAnchorElement>,
-    data: MenuItemProps,
-  ) {
-    console.log('itemClick ' + data.name)
-    if (data.name != undefined) {
-      setActiveItem(data.name)
+  const itemClick = (data: string) => {
+    console.log('itemClick ' + data)
+    if (data != undefined) {
+      setActiveItem(data)
 
-      if (data.name === 'home') {
+      if (data === 'home') {
         router.push('/')
-      } else if (data.name === 'item') {
+      } else if (data === 'itemList') {
         router.push('/itemList')
-      } else if (data.name === 'server') {
+      } else if (data === 'serverSide') {
         router.push('/server')
-      } else if (data.name === 'static') {
+      } else if (data === 'static') {
         router.push('/static')
-      } else if (data.name === 'language') {
+      } else if (data === 'language') {
         router.push('/language')
-      } else if (data.name === 'mobile') {
+      } else if (data === 'mobile') {
         router.push('/mobile')
+      } else if (data === 'table') {
+        router.push('/table')
       }
     }
   }
 
-  useEffect(() => {
-    if (router.pathname === '/') {
-      setActiveItem('home')
-    } else if (router.pathname === '/itemList') {
-      setActiveItem('item')
-    } else if (router.pathname === '/server') {
-      setActiveItem('server')
-    }
-  }, [])
+  // useEffect(() => {
+  //   console.log()
+  //   itemClick(activeItem)
+  // })
 
   let mode = process.env.NODE_ENV
 
+  //className="w-full"
   return (
     <>
-      <div
-        className=" 
-            flex
-            flex-row
-          "
-      >
-        Qxpress !!
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
+      <div className="flex flex-row h-40 w-full bg-gray-500">
+        <div className="flex bg-blue-500 justify-center items-center w-1/6">
+          Qxpress !!
+        </div>
+        <div className="w-5/6">
+          <div className="bg-red-200 h-16">{mode} mode</div>
+          <div
+            className="flex flex-row h-24"
+            onMouseEnter={() => setMenuVisible(true)}
+            onMouseLeave={() => setMenuVisible(false)}
+          >
+            <div
+              className={`
+                flex 
+                ${activeItem === 'home' ? 'bg-pink-100' : 'bg-blue-100'} 
+                items-center 
+                justify-center
+                `}
+              style={{ minWidth: '150px', maxWidth: '300px' }}
+              onClick={() => itemClick('home')}
+            >
+              {t('home')}
+            </div>
+            <div
+              className={`
+                flex 
+                ${activeItem === 'itemList' ? 'bg-pink-100' : 'bg-blue-100'} 
+                items-center 
+                justify-center
+                `}
+              style={{ minWidth: '150px', maxWidth: '300px' }}
+              onClick={() => itemClick('itemList')}
+            >
+              {t('itemList')}
+            </div>
+            <div
+              className={`
+                flex 
+                ${activeItem === 'serverSide' ? 'bg-pink-100' : 'bg-blue-100'} 
+                items-center 
+                justify-center
+                `}
+              style={{ minWidth: '150px', maxWidth: '300px' }}
+              onClick={() => itemClick('serverSide')}
+            >
+              {t('serverSide')}
+            </div>
+            <div
+              className={`
+                flex 
+                ${activeItem === 'static' ? 'bg-pink-100' : 'bg-blue-100'} 
+                items-center 
+                justify-center
+                `}
+              style={{ minWidth: '150px', maxWidth: '300px' }}
+              onClick={() => itemClick('static')}
+            >
+              {t('static')}
+            </div>
+            <div
+              className={`
+                flex 
+                ${activeItem === 'language' ? 'bg-pink-100' : 'bg-blue-100'} 
+                items-center 
+                justify-center
+                `}
+              style={{ minWidth: '150px', maxWidth: '300px' }}
+              onClick={() => itemClick('language')}
+            >
+              {t('language')}
+            </div>
+            <div
+              className={`
+                flex 
+                ${activeItem === 'mobile' ? 'bg-pink-100' : 'bg-blue-100'} 
+                items-center 
+                justify-center
+                `}
+              style={{ minWidth: '150px', maxWidth: '300px' }}
+              onClick={() => itemClick('mobile')}
+            >
+              {t('mobile')}
+            </div>
+            <div
+              className={`
+                flex 
+                ${activeItem === 'table' ? 'bg-pink-100' : 'bg-blue-100'} 
+                items-center 
+                justify-center
+                `}
+              style={{ minWidth: '150px', maxWidth: '300px' }}
+              onClick={() => itemClick('table')}
+            >
+              {t('table')}
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="flex flex-row font-semibold font">zzzzzzz</div>
+      {isMenuVisible && (
+        <div
+          className="absolute left-0 bg-gray-200 p-2 w-full z-10"
+          onMouseEnter={() => setMenuVisible(true)}
+          onMouseLeave={() => setMenuVisible(false)}
+        >
+          <ul>
+            <li>Menu Item 1</li>
+            <li>Menu Item 2</li>
+            <li>Menu Item 3</li>
+          </ul>
+        </div>
+      )}
     </>
   )
 }

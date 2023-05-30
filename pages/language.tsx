@@ -34,6 +34,7 @@ export default function Language() {
             const locale = data.value
             i18n.changeLanguage(locale)
 
+            // router.refresh
             const { pathname, asPath, query } = router
             router.push({ pathname, query }, asPath, { locale: locale })
           }
