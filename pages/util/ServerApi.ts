@@ -1,15 +1,5 @@
 import axios from 'axios'
 
-// const express = require('express')
-// const app = express()
-// const cors = require('cors')
-// const bodyParser = require('body-parser')
-
-// app.use(cors())
-
-// app.use(bodyParser.json()) // for parsing application/json
-// app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-
 export async function callMSmartShipAPI(apiName: string, params: any) {
   let sendingParams: any = {}
 
