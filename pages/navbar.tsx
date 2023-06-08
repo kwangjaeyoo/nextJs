@@ -24,10 +24,10 @@ const Navbar = () => {
         router.push('/static')
       } else if (data === 'language') {
         router.push('/language')
-      } else if (data === 'mobile') {
-        router.push('/mobile')
+      } else if (data === 'regi') {
+        router.push('/component/delivery/registDelivery')
       } else if (data === 'table') {
-        router.push('/table')
+        router.push('/component/table')
       }
     }
   }
@@ -121,9 +121,9 @@ const Navbar = () => {
                 justify-center
                 `}
               style={{ minWidth: '150px', maxWidth: '300px' }}
-              onClick={() => itemClick('mobile')}
+              onClick={() => itemClick('regi')}
             >
-              {t('mobile')}
+              {t('regi')}
             </div>
             <div
               className={`

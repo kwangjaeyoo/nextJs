@@ -3,5 +3,13 @@
   "itemList": "Item List",
   "serverSide": "Server Side Render",
   "language": "Language",
-  "mobile": "Mobile"
+  "mobile": "Mobile",
+  "delivery_section": "Delivery Route",
+  "text_sender": "Sender",
+  "text_recipient": "Recipient",
+  "item_information": "Item Information",
+  "pickup_information": "Pickup Request",
+  "origin_country": "Origin Country",
+  "text_select": "Select ",
+  "msg_agree_qdelivery_service_guide": "[Required] I have reviewed the notice of countries\u0027 restrictions. (prohibited items \u0026 tariffs)"
 }

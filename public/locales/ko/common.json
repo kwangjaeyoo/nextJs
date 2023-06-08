@@ -3,5 +3,14 @@
   "itemList": "아이템리스트",
   "serverSide": "서버 사이드 렌더링",
   "language": "언어",
-  "mobile": "모바일"
+  "mobile": "모바일",
+  "delivery_section": "배송 구간",
+  "text_sender": "발송인",
+  "text_recipient": "수취인",
+  "item_information": "상품 정보",
+  "pickup_information": "픽업 신청",
+  "origin_country": "출발 국가",
+  "text_select": "선택",
+  "destination_country": "도착 국가",
+  "msg_agree_qdelivery_service_guide": "[필수] Qdelivery 서비스 안내 / 금지 품목 / 관세에 사항에 대한 안내를 모두 확인하였습니다. "
 }
