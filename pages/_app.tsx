@@ -1,5 +1,6 @@
 import 'semantic-ui-css/semantic.min.css'
 import '../styles/globals.css'
+import '@/pages/util/Constants'
 
 import i18n from 'i18next'
 import { appWithTranslation } from 'next-i18next'

@@ -1,6 +1,59 @@
 import { t } from 'i18next'
+import { useEffect } from 'react'
+import Select, { StylesConfig } from 'react-select'
+
+import { callMSmartShipAPI } from '@/pages/util/ServerApi'
+
+const colourStyles: StylesConfig<any> = {
+  control: (styles, state) => ({
+    ...styles,
+    borderColor: state.isFocused ? '#7340BF !important' : '#dbdbdb',
+    boxShadow: state.isFocused ? 'none' : styles.boxShadow,
+    outline: state.isFocused ? 'none' : styles.outline,
+    height: 45,
+  }),
+}
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
+]
 
 const RegistStep1 = () => {
+  const loadFromNation = async () => {
+    try {
+      const result = await callMSmartShipAPI('GetStartNation', null)
+      if (result) {
+        if (result.status === 200) {
+          const resultList = JSON.parse(result.data.ResultObject)
+
+          let list = []
+          for (var i = 0; i < resultList.length; i++) {
+            // sg / kr / my 만 가능
+            if (
+              resultList[i].start_nation_cd === 'SG' ||
+              resultList[i].start_nation_cd === 'KR' ||
+              resultList[i].start_nation_cd === 'MY'
+            ) {
+              const conventItem = {
+                nation_name: resultList[i].nation_name,
+                nation_isocode: resultList[i].start_nation_cd,
+              }
+              list.push(conventItem)
+            }
+          }
+          console.log(list)
+        }
+      }
+    } catch (e) {}
+  }
+
+  useEffect(() => {
+    console.log('RegistStep1')
+    loadFromNation()
+  }, [])
+
   return (
     <>
       <div
@@ -30,19 +83,13 @@ const RegistStep1 = () => {
           />
         </div>
 
-        <div
-          className="
-            border 
-            border-dbdbdb 
-            h-14 
-            flex 
-            items-center 
-            p-2 
-            mt-3 
-            justify-between"
-        >
-          <div className="text-[#939393] text-[16px]">{t('select')}</div>
-          <div>TODO</div>
+        <div className="h-14 mt-3">
+          <Select
+            styles={colourStyles}
+            isSearchable={false}
+            options={options}
+            components={{ IndicatorSeparator: () => null }}
+          />
         </div>
 
         <div className="flex flex-row mt-8 ">
@@ -62,19 +109,12 @@ const RegistStep1 = () => {
           />
         </div>
 
-        <div
-          className="
-            border 
-            border-dbdbdb 
-            h-14
-            flex 
-            items-center 
-            p-2 
-            mt-3 
-            justify-between"
-        >
-          <div className="text-[#939393] text-[16px]">{t('select')}</div>
-          <div>TODO</div>
+        <div className="h-14 mt-3">
+          <Select
+            styles={colourStyles}
+            isSearchable={false}
+            components={{ IndicatorSeparator: () => null }}
+          />
         </div>
       </div>
 
