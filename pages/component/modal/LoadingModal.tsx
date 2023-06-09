@@ -1,6 +1,6 @@
 import { Loader } from 'semantic-ui-react'
 
-import useLoadingModal from '../hook/useLoadingModal'
+import useLoadingModal from '../../hook/useLoadingModal'
 
 const LoadingModal = () => {
   const loadingModal = useLoadingModal()

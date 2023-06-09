@@ -10,7 +10,7 @@ import { initReactI18next } from 'react-i18next'
 import en from '../public/locales/en/common.json'
 import ko from '../public/locales/ko/common.json'
 import Layout from './layout'
-import LoadingModal from './modal/LoadingModal'
+import LoadingModal from './component/modal/LoadingModal'
 
 import type { AppProps } from 'next/app'
 

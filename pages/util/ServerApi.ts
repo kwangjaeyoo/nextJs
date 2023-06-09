@@ -1,5 +1,36 @@
 import axios from 'axios'
 
+axios.defaults.withCredentials = true
+
+export async function callMobileSmartShipApi(apiName: string, params: any) {
+  try {
+    const url =
+      global.openApiUrl +
+      'GMKT.INC.GLPS.mobileApiService/MobileSmartShipService.qapi/' +
+      apiName
+
+    console.log('callMobileSmartShipApi =>' + url)
+    const request = await axios({
+      method: 'post',
+      url: url,
+
+      headers: {
+        'Contnet-Type': 'application/json',
+        'User-Agent': global.userAgent,
+        key: 'QXAPIV1_g_1_j57yq9dc6sylKn_g_2_BNqhnDfEK213xJ7b',
+      },
+
+      data: params,
+      timeout: 10000,
+      withCredentials: true, // 쿠키 cors 통신 설정
+    })
+
+    return request
+  } catch (error) {
+    showLog(apiName, error)
+  }
+}
+
 export async function callMSmartShipAPI(apiName: string, params: any) {
   let sendingParams: any = {}
 
@@ -19,6 +50,7 @@ export async function callMSmartShipAPI(apiName: string, params: any) {
       data: params,
       params: sendingParams,
       timeout: 10000,
+      withCredentials: true, // 쿠키 cors 통신 설정
     })
   } catch (error) {
     showLog(apiName, error)

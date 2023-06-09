@@ -12,5 +12,8 @@
   "origin_country": "출발 국가",
   "text_select": "선택",
   "destination_country": "도착 국가",
-  "msg_agree_qdelivery_service_guide": "[필수] Qdelivery 서비스 안내 / 금지 품목 / 관세에 사항에 대한 안내를 모두 확인하였습니다. "
+  "msg_agree_qdelivery_service_guide": "[필수] Qdelivery 서비스 안내 / 금지 품목 / 관세에 사항에 대한 안내를 모두 확인하였습니다. ",
+  "please_select_from_nation": "출발 국가를 선택해주세요.",
+  "please_select_nation": "도착 국가를 선택해주세요.",
+  "ok": "확인"
 }

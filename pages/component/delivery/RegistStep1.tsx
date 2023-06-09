@@ -1,7 +1,8 @@
 import { t } from 'i18next'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Select, { StylesConfig } from 'react-select'
 
+import Modal from '@/pages/component/modal/Modal'
 import { callMSmartShipAPI } from '@/pages/util/ServerApi'
 
 const colourStyles: StylesConfig<any> = {
@@ -14,13 +15,22 @@ const colourStyles: StylesConfig<any> = {
   }),
 }
 
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
+const fromNationList = [
+  { value: 'SG', label: 'Singapore' },
+  { value: 'KR', label: 'South Korea' },
+  { value: 'MY', label: 'Malaysia' },
 ]
 
 const RegistStep1 = () => {
+  const didMount = useRef(false)
+
+  const [showModal, setShowModal] = useState({ content: '', btn: '' })
+
+  const [fromNation, setFromNation] = useState({ nation: '', nationIso: '' })
+  const [toNation, setToNation] = useState({ nation: '', nationIso: '' })
+
+  const [toNationList, setToNationList] = useState<any>([])
+
   const loadFromNation = async () => {
     try {
       const result = await callMSmartShipAPI('GetStartNation', null)
@@ -46,13 +56,65 @@ const RegistStep1 = () => {
           console.log(list)
         }
       }
+
+      // const param = {}
+      // const re = await callMobileSmartShipApi('GetSmartShipOrderList', param)
     } catch (e) {}
   }
 
   useEffect(() => {
-    console.log('RegistStep1')
-    loadFromNation()
+    if (didMount.current) {
+      console.log('RegistStep1')
+      // loadFromNation()
+    } else {
+      didMount.current = true
+    }
   }, [])
+
+  const settingFromNation = (value: any) => {
+    setFromNation({ nationIso: value.value, nation: value.label })
+
+    let list = []
+    if (value.value === 'SG') {
+      // TODO api call
+    } else if (value.value === 'KR') {
+      list = [
+        { nation_name: 'Singapore', nation_isocode: 'SG' },
+        { nation_name: 'Malaysia', nation_isocode: 'MY' },
+        { nation_name: 'Japan', nation_isocode: 'JP' },
+        { nation_name: 'Taiwan', nation_isocode: 'TW' },
+        { nation_name: 'Hong Kong', nation_isocode: 'HK' },
+        { nation_name: 'USA', nation_isocode: 'US' },
+        { nation_name: 'ThaiLand', nation_isocode: 'TH' },
+        { nation_name: 'Vietnam', nation_isocode: 'VN' },
+        { nation_name: 'England', nation_isocode: 'UK' },
+        { nation_name: 'Canada', nation_isocode: 'CA' },
+      ]
+      setToNationList(list)
+    } else if (value.value === 'MY') {
+      // 출발국가 my 에서는 sg 일단 가능
+      list = [{ nation_name: 'Singapore', nation_isocode: 'SG' }]
+      setToNationList(list)
+    }
+  }
+
+  const settingToNation = (value: any) => {
+    setToNation({ nationIso: value.value, nation: value.label })
+  }
+
+  const checkModal = () => {
+    if (fromNation.nationIso === '') {
+      setShowModal({ content: t('please_select_from_nation'), btn: t('ok') })
+      return
+    }
+
+    if (toNation.nationIso === '') {
+      setShowModal({ content: t('please_select_nation'), btn: t('ok') })
+      return
+    }
+
+    setShowModal({ content: '1111', btn: t('ok') })
+  }
 
   return (
     <>
@@ -87,8 +149,9 @@ const RegistStep1 = () => {
           <Select
             styles={colourStyles}
             isSearchable={false}
-            options={options}
+            options={fromNationList}
             components={{ IndicatorSeparator: () => null }}
+            onChange={settingFromNation}
           />
         </div>
 
@@ -113,7 +176,9 @@ const RegistStep1 = () => {
           <Select
             styles={colourStyles}
             isSearchable={false}
+            options={toNationList}
             components={{ IndicatorSeparator: () => null }}
+            onChange={(value) => settingToNation(value)}
           />
         </div>
       </div>
@@ -126,13 +191,22 @@ const RegistStep1 = () => {
           m-10
           p-4
           rounded-xl"
+        onClick={() => checkModal()}
       >
-        <div className="bg-pink-400 ">TODO</div>
+        <div className="flex bg-pink-400 items-center">TODO</div>
         <div className="text-[16px] ml-4">
           {t('msg_agree_qdelivery_service_guide')}
         </div>
-        <>TODO</>
+        <div className="flex-grow"></div>
+        <div className="flex items-center justify-end">TODO</div>
       </div>
+
+      <Modal
+        isOpen={showModal.content !== ''}
+        onSubmit={() => setShowModal({ content: '', btn: '' })}
+        title={showModal.content}
+        actionLabel={showModal.btn}
+      />
     </>
   )
 }
