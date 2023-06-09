@@ -1,9 +1,12 @@
 import { t } from 'i18next'
 import { useEffect, useRef, useState } from 'react'
+import { TfiAngleRight } from 'react-icons/tfi'
 import Select, { StylesConfig } from 'react-select'
 
+import BottomModal from '@/pages/component/modal/BottomModal'
 import Modal from '@/pages/component/modal/Modal'
 import { callMSmartShipAPI } from '@/pages/util/ServerApi'
+import Checkbox from '../Checkbox'
 
 const colourStyles: StylesConfig<any> = {
   control: (styles, state) => ({
@@ -25,6 +28,8 @@ const RegistStep1 = () => {
   const didMount = useRef(false)
 
   const [showModal, setShowModal] = useState({ content: '', btn: '' })
+  const [showBtnModal, setShowBtnModal] = useState(false)
+  const [isCheckd, setIsCheckd] = useState(false)
 
   const [fromNation, setFromNation] = useState({ nation: '', nationIso: '' })
   const [toNation, setToNation] = useState({ nation: '', nationIso: '' })
@@ -79,21 +84,21 @@ const RegistStep1 = () => {
       // TODO api call
     } else if (value.value === 'KR') {
       list = [
-        { nation_name: 'Singapore', nation_isocode: 'SG' },
-        { nation_name: 'Malaysia', nation_isocode: 'MY' },
-        { nation_name: 'Japan', nation_isocode: 'JP' },
-        { nation_name: 'Taiwan', nation_isocode: 'TW' },
-        { nation_name: 'Hong Kong', nation_isocode: 'HK' },
-        { nation_name: 'USA', nation_isocode: 'US' },
-        { nation_name: 'ThaiLand', nation_isocode: 'TH' },
-        { nation_name: 'Vietnam', nation_isocode: 'VN' },
-        { nation_name: 'England', nation_isocode: 'UK' },
-        { nation_name: 'Canada', nation_isocode: 'CA' },
+        { label: 'Singapore', value: 'SG' },
+        { label: 'Malaysia', value: 'MY' },
+        { label: 'Japan', value: 'JP' },
+        { label: 'Taiwan', value: 'TW' },
+        { label: 'Hong Kong', value: 'HK' },
+        { label: 'USA', value: 'US' },
+        { label: 'ThaiLand', value: 'TH' },
+        { label: 'Vietnam', value: 'VN' },
+        { label: 'England', value: 'UK' },
+        { label: 'Canada', value: 'CA' },
       ]
       setToNationList(list)
     } else if (value.value === 'MY') {
       // 출발국가 my 에서는 sg 일단 가능
-      list = [{ nation_name: 'Singapore', nation_isocode: 'SG' }]
+      list = [{ label: 'Singapore', value: 'SG' }]
       setToNationList(list)
     }
   }
@@ -113,7 +118,7 @@ const RegistStep1 = () => {
       return
     }
 
-    setShowModal({ content: '1111', btn: t('ok') })
+    setShowBtnModal(true)
   }
 
   return (
@@ -193,12 +198,16 @@ const RegistStep1 = () => {
           rounded-xl"
         onClick={() => checkModal()}
       >
-        <div className="flex bg-pink-400 items-center">TODO</div>
+        <div className="flex items-center">
+          <Checkbox checked={isCheckd} disabled />
+        </div>
         <div className="text-[16px] ml-4">
           {t('msg_agree_qdelivery_service_guide')}
         </div>
         <div className="flex-grow"></div>
-        <div className="flex items-center justify-end">TODO</div>
+        <div className="flex items-center justify-end">
+          <TfiAngleRight />
+        </div>
       </div>
 
       <Modal
@@ -206,6 +215,15 @@ const RegistStep1 = () => {
         onSubmit={() => setShowModal({ content: '', btn: '' })}
         title={showModal.content}
         actionLabel={showModal.btn}
+      />
+
+      <BottomModal
+        isOpen={showBtnModal}
+        contents={t('service_guide_detail')}
+        onClosed={() => {
+          setShowBtnModal(false)
+          setIsCheckd(true)
+        }}
       />
     </>
   )
