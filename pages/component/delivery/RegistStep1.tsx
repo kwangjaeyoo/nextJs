@@ -7,16 +7,7 @@ import BottomModal from '@/pages/component/modal/BottomModal'
 import Modal from '@/pages/component/modal/Modal'
 import { callMSmartShipAPI } from '@/pages/util/ServerApi'
 import Checkbox from '../Checkbox'
-
-const colourStyles: StylesConfig<any> = {
-  control: (styles, state) => ({
-    ...styles,
-    borderColor: state.isFocused ? '#7340BF !important' : '#dbdbdb',
-    boxShadow: state.isFocused ? 'none' : styles.boxShadow,
-    outline: state.isFocused ? 'none' : styles.outline,
-    height: 45,
-  }),
-}
+import { colourStyles } from '../modal/SelectStyle'
 
 const fromNationList = [
   { value: 'SG', label: 'Singapore' },

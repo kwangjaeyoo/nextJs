@@ -30,7 +30,7 @@ const RegiPosTopLayout: React.FC<RegiPosTopLayoutProp> = ({ pos }) => {
               w-12
               h-12 
               rounded-full
-              ${position == index ? 'bg-[#7340BF]' : 'bg-[#D5C6EC]'}
+              ${position == index + 1 ? 'bg-[#7340BF]' : 'bg-[#D5C6EC]'}
               flex 
               items-center
               justify-center 
