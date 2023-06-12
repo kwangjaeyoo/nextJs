@@ -23,7 +23,7 @@ const RegiPosTopLayout: React.FC<RegiPosTopLayoutProp> = ({ pos }) => {
   return (
     <div className="flex m-8 w-full">
       {registPosition.map((item, index) => (
-        <div className=" flex flex-col items-center w-full" key={index}>
+        <div className="flex flex-col items-center w-full" key={index}>
           <div
             className={`
               mt-5
@@ -40,10 +40,12 @@ const RegiPosTopLayout: React.FC<RegiPosTopLayoutProp> = ({ pos }) => {
               text-lg
             `}
           >
-            {index + 1}
+            {position > index + 1 ? <>TD</> : <>{index + 1}</>}
           </div>
 
-          <div className="mt-4 mb-4 font-semi-bold">{item}</div>
+          <div className="mt-4 mb-4 font-bold text-[#7340BF] text-center">
+            {item}
+          </div>
         </div>
       ))}
     </div>

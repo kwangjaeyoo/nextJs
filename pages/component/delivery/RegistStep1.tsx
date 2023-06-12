@@ -6,8 +6,10 @@ import Select, { StylesConfig } from 'react-select'
 import BottomModal from '@/pages/component/modal/BottomModal'
 import Modal from '@/pages/component/modal/Modal'
 import { callMSmartShipAPI } from '@/pages/util/ServerApi'
+
 import Checkbox from '../Checkbox'
 import { colourStyles } from '../modal/SelectStyle'
+import { InationModel } from './RegistDeliveryScreen'
 
 const fromNationList = [
   { value: 'SG', label: 'Singapore' },
@@ -15,7 +17,15 @@ const fromNationList = [
   { value: 'MY', label: 'Malaysia' },
 ]
 
-const RegistStep1 = () => {
+interface RegistStep1Props {
+  nationModel: InationModel
+  nextClick: (nationModel: InationModel) => void
+}
+
+const RegistStep1: React.FC<RegistStep1Props> = ({
+  nationModel,
+  nextClick,
+}) => {
   const didMount = useRef(false)
 
   const [showModal, setShowModal] = useState({ content: '', btn: '' })
@@ -62,6 +72,15 @@ const RegistStep1 = () => {
     if (didMount.current) {
       console.log('RegistStep1')
       // loadFromNation()
+      setFromNation({
+        nation: nationModel.search_from,
+        nationIso: nationModel.search_fromCode,
+      })
+
+      setToNation({
+        nation: nationModel.search_to,
+        nationIso: nationModel.search_toCode,
+      })
     } else {
       didMount.current = true
     }
@@ -98,18 +117,45 @@ const RegistStep1 = () => {
     setToNation({ nationIso: value.value, nation: value.label })
   }
 
-  const checkModal = () => {
+  const checkNationSelect = () => {
     if (fromNation.nationIso === '') {
       setShowModal({ content: t('please_select_from_nation'), btn: t('ok') })
-      return
+      return false
     }
 
     if (toNation.nationIso === '') {
       setShowModal({ content: t('please_select_nation'), btn: t('ok') })
+      return false
+    }
+
+    return true
+  }
+
+  const checkModal = () => {
+    if (checkNationSelect()) {
+      setShowBtnModal(true)
+    }
+  }
+
+  const checkNextStep = () => {
+    if (!checkNationSelect()) {
       return
     }
 
-    setShowBtnModal(true)
+    if (!isCheckd) {
+      setShowModal({
+        content: t('please_checked_terms_conditions'),
+        btn: t('ok'),
+      })
+      return
+    }
+
+    nextClick({
+      search_from: fromNation.nation,
+      search_fromCode: fromNation.nationIso,
+      search_to: toNation.nation,
+      search_toCode: toNation.nationIso,
+    })
   }
 
   return (
@@ -199,6 +245,23 @@ const RegistStep1 = () => {
         <div className="flex items-center justify-end">
           <TfiAngleRight />
         </div>
+      </div>
+
+      <div
+        className=" 
+         flex 
+         flex-row
+         items-center
+         justify-center
+         bg-[#7340BF]
+         text-white
+         font-semibold
+         m-10
+         p-4
+         rounded-xl"
+        onClick={checkNextStep}
+      >
+        {t('text_next')}
       </div>
 
       <Modal

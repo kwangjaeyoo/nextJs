@@ -1,19 +1,36 @@
 import { t } from 'i18next'
+import { useRouter } from 'next/router'
+import { useEffect, useRef } from 'react'
 import Select from 'react-select'
 
 import InputBox from '../InputBox'
 import { colourStyles } from '../modal/SelectStyle'
+import { InationModel } from './RegistDeliveryScreen'
 
 const inputTypeList = [
   { value: 'direct', label: t('direct_input') },
   { value: 'address', label: t('used_my_address_book') },
 ]
 
-const RegistStep2 = () => {
+interface RegistStep1Props {
+  nationModel: InationModel
+}
+
+const RegistStep2: React.FC<RegistStep1Props> = ({ nationModel }) => {
+  const router = useRouter()
+  const didMount = useRef(false)
+
+  useEffect(() => {
+    if (didMount.current) {
+      console.log('RegistStep2')
+    } else {
+      didMount.current = true
+    }
+  })
+
   const setInputType = (value: any) => {
     if (value.value === 'address') {
-      // TODO
-      console.log('address, TODO')
+      router.push('/address')
     }
   }
 
@@ -29,7 +46,7 @@ const RegistStep2 = () => {
           mr-8
           mt-4
           p-4
-          rounded-xl "
+          rounded-xl"
       >
         <div className="font-semi-bold text-[16px]">
           {t('select_address_input_type')}
@@ -59,7 +76,7 @@ const RegistStep2 = () => {
         <div className="font-semi-bold text-[16px] mb-3">
           {t('origin_country')}
         </div>
-        <InputBox placeholder="TODO" disable />
+        <InputBox placeholder={nationModel.search_from} disable />
 
         <div className="flex mt-5 mb-3">
           <div className="font-semi-bold text-[16px]">{t('name')}</div>
@@ -105,6 +122,7 @@ const RegistStep2 = () => {
               justify-center
               text-white
               "
+            onClick={() => console.log('TODO ZIP address')}
           >
             {t('search')}
           </div>

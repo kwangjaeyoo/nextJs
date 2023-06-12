@@ -1,5 +1,5 @@
 const RegistStep6 = () => {
-  return <div></div>
+  return <div>RegistStep6</div>
 }
 
 export default RegistStep6
