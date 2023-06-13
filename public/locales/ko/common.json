@@ -40,11 +40,18 @@
   "item_image": "상품 대표 이미지",
   "msg_upload_image": "- 명확하게 상품을 구분할 수 있는 사진을 등록해주세요.\nJPG, JPEG, GIF,PNG 파일로 업로드 가능합니다.\n- 업로드 권장 사이즈: 600 x 600",
   "addressList": "주소록",
+  "search_address": "주소 검색",
   "address_promotion_msg": "자주 쓰는 배송 주소를 등록해 간편하게 Qxpress 배송 서비스를 이용하세요!",
   "all": "All",
   "pickup_address": "픽업 주소",
   "return_address": "반품주소",
   "representing_address": "대표주소",
   "shipping_address": "발송 주소",
-  "text_next": "다음"
+  "text_next": "다음",
+  "text_prev": "이전",
+  "qdelivery_create": "Qdelivery 신청",
+  "search_type": "검색 방식",
+  "search_by_keyword_zipcode": "우편번호/키워드",
+  "address_division": "행정구역",
+  "address_direct": "주소 직접 입력"
 }

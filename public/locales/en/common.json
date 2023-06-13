@@ -39,11 +39,18 @@
   "item_image": "Product representative image",
   "msg_upload_image": "- Please add a clear Item image with JPG, JPEG, GIF, PNG files. \n- Prefered image size: 600 x 600",
   "addressList": "Address Book",
+  "search_address": "Search Address",
   "address_promotion_msg": "Register your address to use Qxpress shipping service easily!",
   "all": "All",
   "pickup_address": "Pickup address",
   "return_address": "Return Address",
   "representing_address": "Main Address",
   "shipping_address": "Shipping address",
-  "text_next": "Next"
+  "text_next": "Next",
+  "text_prev": "Previous",
+  "qdelivery_create": "Qdelivery Register",
+  "search_type": "Search Type",
+  "search_by_keyword_zipcode": "Zip Code/Keyword",
+  "address_division": "State/City/Street",
+  "address_direct": "Add Directly"
 }

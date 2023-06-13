@@ -40,7 +40,7 @@ const RegiPosTopLayout: React.FC<RegiPosTopLayoutProp> = ({ pos }) => {
               text-lg
             `}
           >
-            {position > index + 1 ? <>TD</> : <>{index + 1}</>}
+            {position > index + 1 ? <>TODO</> : <>{index + 1}</>}
           </div>
 
           <div className="mt-4 mb-4 font-bold text-[#7340BF] text-center">

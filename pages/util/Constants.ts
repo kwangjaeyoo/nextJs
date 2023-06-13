@@ -1,4 +1,4 @@
-global.site = 'http://staging-m.qxpress.net'
+global.site = 'http://m.qxpress.net'
 // global.site = 'http://172.30.88.66'
 // global.site = 'http://kx_hong-mobile.qxpress.net'
 global.openApiUrl = 'https://qxapi.qxpress.net/'

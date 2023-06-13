@@ -3,9 +3,11 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import Select from 'react-select'
 
+import { ADDRESS_TYPE } from '@/pages/address'
+
 import InputBox from '../InputBox'
 import { colourStyles } from '../modal/SelectStyle'
-import { InationModel } from './RegistDeliveryScreen'
+import { InationModel, IaddressModel } from './RegistDeliveryScreen'
 
 const inputTypeList = [
   { value: 'direct', label: t('direct_input') },
@@ -14,9 +16,17 @@ const inputTypeList = [
 
 interface RegistStep1Props {
   nationModel: InationModel
+  senderModel: IaddressModel
+  nextClick: () => void
+  prevClick: () => void
 }
 
-const RegistStep2: React.FC<RegistStep1Props> = ({ nationModel }) => {
+const RegistStep2: React.FC<RegistStep1Props> = ({
+  nationModel,
+  senderModel,
+  nextClick,
+  prevClick,
+}) => {
   const router = useRouter()
   const didMount = useRef(false)
 
@@ -30,7 +40,10 @@ const RegistStep2: React.FC<RegistStep1Props> = ({ nationModel }) => {
 
   const setInputType = (value: any) => {
     if (value.value === 'address') {
-      router.push('/address')
+      router.push({
+        pathname: '/address',
+        query: { type: ADDRESS_TYPE.ADDRESS_BOOK },
+      })
     }
   }
 
@@ -92,7 +105,12 @@ const RegistStep2: React.FC<RegistStep1Props> = ({ nationModel }) => {
               rounded-full"
           />
         </div>
-        <InputBox placeholder="" />
+        <InputBox
+          placeholder=""
+          onChange={(value) => {
+            senderModel.name = value
+          }}
+        />
 
         <div className="flex mt-5 mb-3">
           <div className="font-semi-bold text-[16px]">{t('address')}</div>
@@ -122,7 +140,13 @@ const RegistStep2: React.FC<RegistStep1Props> = ({ nationModel }) => {
               justify-center
               text-white
               "
-            onClick={() => console.log('TODO ZIP address')}
+            onClick={() => {
+              router.push({
+                pathname: '/address',
+                query: { type: ADDRESS_TYPE.SEARCH_ADDRESS },
+              })
+              // TODO 갔다 왔을 때 처리 필요...
+            }}
           >
             {t('search')}
           </div>
@@ -133,7 +157,7 @@ const RegistStep2: React.FC<RegistStep1Props> = ({ nationModel }) => {
         </div>
         <InputBox
           placeholder={t('please_check_address_detail_input')}
-          onChange={(value) => console.log(value)}
+          onChange={(value) => console.log('TODO ' + value)}
         />
 
         <div className="flex mt-5 mb-3">
@@ -152,12 +176,52 @@ const RegistStep2: React.FC<RegistStep1Props> = ({ nationModel }) => {
               rounded-full"
           />
         </div>
-        <InputBox placeholder={''} onChange={(value) => console.log(value)} />
+        <InputBox
+          placeholder=""
+          onChange={(value) => (senderModel.telNo = value)}
+        />
 
         <div className="flex mt-5 mb-3">
           <div className="font-semi-bold text-[16px]">{t('email_address')}</div>
         </div>
-        <InputBox placeholder={''} onChange={(value) => console.log(value)} />
+        <InputBox
+          placeholder=""
+          onChange={(value) => (senderModel.email = value)}
+        />
+      </div>
+
+      <div className="flex flex-row mt-10 h-14 ml-8 mr-8">
+        <div
+          className=" 
+              flex 
+              w-1/2
+              mr-1
+              items-center
+              justify-center
+              bg-[#f4f4f4]
+              text-[#939393]
+              font-semibold
+              rounded-xl
+              shadow-lg"
+          onClick={prevClick}
+        >
+          {t('text_prev')}
+        </div>
+        <div
+          className=" 
+              flex
+              w-1/2
+              ml-1
+              items-center
+              justify-center
+              bg-[#7340BF]
+              text-white
+              font-semibold
+              rounded-xl"
+          onClick={() => console.log('TODO ' + JSON.stringify(senderModel))}
+        >
+          {t('text_next')}
+        </div>
       </div>
     </>
   )

@@ -49,7 +49,7 @@ const AddressBookScreen = () => {
     <>
       <TopLayout
         title={t('addressList')}
-        showLeftBtn={true}
+        showLeftBtn
         onLeftPress={router.back}
       />
       <div className="flex flex-col p-4">

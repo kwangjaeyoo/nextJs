@@ -1,8 +1,21 @@
 import { t } from 'i18next'
 
 import InputBox from '../InputBox'
+import { IaddressModel, InationModel } from './RegistDeliveryScreen'
 
-const RegistStep3 = () => {
+interface RegistStep3Props {
+  nationModel: InationModel
+  recipientModel: IaddressModel
+  nextClick: () => void
+  prevClick: () => void
+}
+
+const RegistStep3: React.FC<RegistStep3Props> = ({
+  nationModel,
+  recipientModel,
+  nextClick,
+  prevClick,
+}) => {
   return (
     <>
       <div className="ml-8 font-semi-bold text-[16px]">{t('text_sender')}</div>
@@ -67,6 +80,7 @@ const RegistStep3 = () => {
               justify-center
               text-white
               "
+            onClick={() => console.log('TODO')}
           >
             {t('search')}
           </div>
@@ -98,7 +112,41 @@ const RegistStep3 = () => {
               rounded-full"
           />
         </div>
-        <InputBox placeholder={''} onChange={(value) => console.log(value)} />
+        <InputBox placeholder="" onChange={(value) => console.log(value)} />
+      </div>
+
+      <div className="flex flex-row mt-10 h-14 ml-8 mr-8">
+        <div
+          className=" 
+              flex 
+              w-1/2
+              mr-1
+              items-center
+              justify-center
+              bg-[#f4f4f4]
+              text-[#939393]
+              font-semibold
+              rounded-xl
+              shadow-lg"
+          onClick={() => console.log('TODO ')}
+        >
+          {t('text_prev')}
+        </div>
+        <div
+          className=" 
+              flex
+              w-1/2
+              ml-1
+              items-center
+              justify-center
+              bg-[#7340BF]
+              text-white
+              font-semibold
+              rounded-xl"
+          onClick={() => console.log('TODO ')}
+        >
+          {t('text_next')}
+        </div>
       </div>
     </>
   )

@@ -2,7 +2,12 @@ import { t } from 'i18next'
 
 import DeliveryItem from './DeliveryItem'
 
-const RegistStep4 = () => {
+interface RegistStep4Props {
+  nextClick: () => void
+  prevClick: () => void
+}
+
+const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
   return (
     <div className="m-8">
       <div className="flex flex-row justify-between">
@@ -21,6 +26,7 @@ const RegistStep4 = () => {
             justify-center
             items-center 
             "
+          onClick={() => console.log('TODO')}
         >
           + {t('text_add')}
         </div>

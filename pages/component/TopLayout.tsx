@@ -1,5 +1,6 @@
 interface TopLayoutProps {
   title: string
+  titleColor?: string
   backColor?: string
   showLeftBtn?: boolean
   onLeftPress?: () => void
@@ -9,6 +10,7 @@ interface TopLayoutProps {
 
 const TopLayout: React.FC<TopLayoutProps> = ({
   title,
+  titleColor = 'text-[#000000]',
   backColor = 'bg-[#ffffff]',
   showLeftBtn = false,
   onLeftPress,
@@ -46,14 +48,15 @@ const TopLayout: React.FC<TopLayoutProps> = ({
         )}
 
         <div
-          className=" 
+          className={`  
             flex
             items-center 
             justify-center   
             z-10
             w-full
             font-semibold
-          "
+            ${titleColor}
+          `}
         >
           {title}
         </div>

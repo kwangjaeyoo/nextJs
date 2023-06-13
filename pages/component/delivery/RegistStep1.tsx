@@ -5,7 +5,10 @@ import Select, { StylesConfig } from 'react-select'
 
 import BottomModal from '@/pages/component/modal/BottomModal'
 import Modal from '@/pages/component/modal/Modal'
-import { callMSmartShipAPI } from '@/pages/util/ServerApi'
+import {
+  callMSmartShipAPI,
+  callMobileSmartShipApi,
+} from '@/pages/util/ServerApi'
 
 import Checkbox from '../Checkbox'
 import { colourStyles } from '../modal/SelectStyle'
@@ -72,6 +75,7 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
     if (didMount.current) {
       console.log('RegistStep1')
       // loadFromNation()
+
       setFromNation({
         nation: nationModel.search_from,
         nationIso: nationModel.search_fromCode,
