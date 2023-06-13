@@ -1,10 +1,45 @@
 import { t } from 'i18next'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+import { convertDateformat } from '@/pages/util/Util'
 
 import InputBox from '../InputBox'
+import Image from 'next/image'
 
 const RegistStep5 = () => {
   const [isRegistryOrder, setIsRegistryOrder] = useState(false)
+  const [pickupDate, setPickupDate] = useState('')
+
+  const didMount = useRef(false)
+
+  useEffect(() => {
+    if (didMount.current) {
+      console.log('RegistStep5')
+      setupPickupDate()
+    } else {
+      didMount.current = true
+    }
+  })
+
+  const setupPickupDate = () => {
+    const date = new Date()
+    const year = date.getFullYear()
+    let month = date.getMonth() + 1
+    let day = date.getDate()
+
+    let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
+
+    if (lastDay.getDate().toString() === date.getDate().toString()) {
+      // 월의 마지막 날이면 다음달 1일로 설정해주기.
+      month = month + 1
+      day = 1
+    } else {
+      day = date.getDate() + 1
+    }
+
+    let pickupDate = convertDateformat(year, month, day)
+    setPickupDate(pickupDate)
+  }
 
   return (
     <div className="flex flex-col m-8">
@@ -60,8 +95,13 @@ const RegistStep5 = () => {
             border-[#dbdbdb]"
           onClick={() => console.log('TODO')}
         >
-          <div>TODO</div>
-          <div>TODO</div>
+          <div>{pickupDate}</div>
+          <Image
+            src={'/icon_calendar.png'}
+            width={25}
+            height={25}
+            alt={'calendar'}
+          />
         </div>
 
         <div className="font-semi-bold text-[14px] mt-4 mb-3">
