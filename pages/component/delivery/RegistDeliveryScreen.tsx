@@ -30,7 +30,7 @@ export interface IaddressModel {
 }
 
 const RegistDeliveryScreen = () => {
-  const [position, setPosition] = useState(3)
+  const [position, setPosition] = useState(5)
 
   const nationModel = useRef<InationModel>({
     search_from: '',
@@ -97,10 +97,15 @@ const RegistDeliveryScreen = () => {
           nationModel={nationModel.current}
           recipientModel={recipientModel.current}
           nextClick={() => console.log('TODO')}
-          prevClick={() => setPosition(1)}
+          prevClick={() => setPosition(2)}
         />
       )}
-      {position == 4 && <RegistStep4 />}
+      {position == 4 && (
+        <RegistStep4
+          nextClick={() => console.log('TODO')}
+          prevClick={() => setPosition(2)}
+        />
+      )}
       {position == 5 && <RegistStep5 />}
       {position == 6 && <RegistStep6 />}
     </div>

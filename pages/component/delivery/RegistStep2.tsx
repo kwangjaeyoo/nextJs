@@ -14,14 +14,14 @@ const inputTypeList = [
   { value: 'address', label: t('used_my_address_book') },
 ]
 
-interface RegistStep1Props {
+interface RegistStep2Props {
   nationModel: InationModel
   senderModel: IaddressModel
   nextClick: () => void
   prevClick: () => void
 }
 
-const RegistStep2: React.FC<RegistStep1Props> = ({
+const RegistStep2: React.FC<RegistStep2Props> = ({
   nationModel,
   senderModel,
   nextClick,

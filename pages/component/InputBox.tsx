@@ -1,22 +1,28 @@
+import { HTMLInputTypeAttribute } from 'react'
+
 interface InputBoxProp {
   placeholder: string
   disable?: boolean
+  type?: HTMLInputTypeAttribute
+  height?: string
   onChange?: (value: string) => void
 }
 
 const InputBox: React.FC<InputBoxProp> = ({
   placeholder,
   disable,
+  type = 'string',
+  height = 'h-12',
   onChange,
 }) => {
   return (
     <input
-      className="
+      className={`
         flex
         border
         w-full
         border-[#dbdbdb]
-        h-12
+        ${height}
         rounded 
         items-center 
         pl-3
@@ -27,7 +33,8 @@ const InputBox: React.FC<InputBoxProp> = ({
         disabled:text-[#939393]
         disabled:bg-white
         text-[#0D1E20]
-        "
+        `}
+      type={type}
       placeholder={placeholder}
       disabled={disable}
       onChange={(value) => {

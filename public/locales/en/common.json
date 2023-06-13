@@ -52,5 +52,13 @@
   "search_type": "Search Type",
   "search_by_keyword_zipcode": "Zip Code/Keyword",
   "address_division": "State/City/Street",
-  "address_direct": "Add Directly"
+  "address_direct": "Add Directly",
+  "request_pickup_date": "Request Pickup Date",
+  "pickup_memo": "Pickup Memo ",
+  "qxmoney_balance": "Qxmoney balance",
+  "box_weight_input": "Input Total Box Weight ",
+  "box_size": "Box Size (cm)",
+  "box_weight": "Box Weight (Kg)",
+  "text_signup": "Register ",
+  "search_estimated_costs": "Get Quotation"
 }

@@ -53,5 +53,13 @@
   "search_type": "검색 방식",
   "search_by_keyword_zipcode": "우편번호/키워드",
   "address_division": "행정구역",
-  "address_direct": "주소 직접 입력"
+  "address_direct": "주소 직접 입력",
+  "request_pickup_date": "픽업 희망일",
+  "pickup_memo": "픽업 메모",
+  "qxmoney_balance": "QxMoney 잔액",
+  "box_size": "상자 규격 (cm)",
+  "box_weight": "상자 무게 (Kg)",
+  "box_weight_input": "박스 무게 입력 ",
+  "text_signup": "신청",
+  "search_estimated_costs": "예상 비용 조회하기"
 }
