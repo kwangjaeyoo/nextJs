@@ -60,5 +60,7 @@
   "box_size": "Box Size (cm)",
   "box_weight": "Box Weight (Kg)",
   "text_signup": "Register ",
-  "search_estimated_costs": "Get Quotation"
+  "search_estimated_costs": "Get Quotation",
+  "add_before_item": "Import Past Info",
+  "add_new_item": "Add New "
 }

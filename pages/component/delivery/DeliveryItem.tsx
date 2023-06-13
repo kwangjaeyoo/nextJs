@@ -7,6 +7,7 @@ import { colourStyles } from '../modal/SelectStyle'
 interface DeliveryItemProps {
   index: number
   item: any
+  deleteItem: (index: number) => void
 }
 
 const currencyList = [
@@ -15,11 +16,16 @@ const currencyList = [
   { value: 'MY', label: 'TODO' },
 ]
 
-const DeliveryItem: React.FC<DeliveryItemProps> = ({ index, item }) => {
+const DeliveryItem: React.FC<DeliveryItemProps> = ({
+  index,
+  item,
+  deleteItem,
+}) => {
   const [open, setOpen] = useState(true)
 
   const handleDeleteClick = (event: MouseEvent<HTMLDivElement>) => {
-    console.log('del')
+    console.log('del ' + index)
+    deleteItem(index)
     event.stopPropagation()
   }
 
@@ -116,14 +122,14 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({ index, item }) => {
             <div className="font-bold text-[14px]">{t('url_or_picture')}</div>
             <div
               className="
-                mt-1 
-                ml-2 
-                flex 
-                self-center
-                w-2
-                h-2 
-                bg-[#9772D1]
-                rounded-full"
+              mt-1 
+              ml-2 
+              flex 
+              self-center
+              w-2
+              h-2 
+              bg-[#9772D1]
+              rounded-full"
             />
           </div>
 

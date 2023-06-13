@@ -61,5 +61,7 @@
   "box_weight": "상자 무게 (Kg)",
   "box_weight_input": "박스 무게 입력 ",
   "text_signup": "신청",
-  "search_estimated_costs": "예상 비용 조회하기"
+  "search_estimated_costs": "예상 비용 조회하기",
+  "add_before_item": "이전 상품 가져오기",
+  "add_new_item": "새로 추가하기"
 }
