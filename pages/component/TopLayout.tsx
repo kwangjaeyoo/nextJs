@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 interface TopLayoutProps {
   title: string
   titleColor?: string
@@ -43,7 +45,14 @@ const TopLayout: React.FC<TopLayoutProps> = ({
               if (onLeftPress) onLeftPress()
             }}
           >
-            LeftBtn
+            <Image
+              src={
+                backColor == 'bg-[#ffffff]' ? '/headic_pre.png' : '/prew-wh.png'
+              }
+              width={25}
+              height={25}
+              alt="back"
+            />
           </div>
         )}
 
@@ -55,6 +64,7 @@ const TopLayout: React.FC<TopLayoutProps> = ({
             z-10
             w-full
             font-semibold
+            text-[16px]
             ${titleColor}
           `}
         >
@@ -76,7 +86,12 @@ const TopLayout: React.FC<TopLayoutProps> = ({
               if (onRightPress) onRightPress()
             }}
           >
-            right
+            <Image
+              src={'/headic_close.png'}
+              width={25}
+              height={25}
+              alt="close"
+            />
           </div>
         )}
       </div>

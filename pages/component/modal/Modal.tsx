@@ -109,7 +109,7 @@ const Modal: React.FC<ModalPops> = ({
                   flex 
                   items-center 
                   p-6
-                  rounded-
+                  rounded
                   justify-center
                   relative
                   ${body ? 'border-b-[1px]' : ''}  

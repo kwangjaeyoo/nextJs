@@ -30,7 +30,7 @@ export interface IaddressModel {
 }
 
 const RegistDeliveryScreen = () => {
-  const [position, setPosition] = useState(5)
+  const [position, setPosition] = useState(2)
 
   const nationModel = useRef<InationModel>({
     search_from: '',
@@ -72,6 +72,7 @@ const RegistDeliveryScreen = () => {
     <div className="h-screen bg-[#f4f4f4] overflow-y-auto">
       <TopLayout
         title={t('qdelivery_create')}
+        showLeftBtn
         showRightBtn
         onRightPress={() => console.log('TODO')}
       />

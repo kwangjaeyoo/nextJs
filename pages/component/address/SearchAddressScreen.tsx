@@ -14,6 +14,8 @@ const SearchAddressScreen = () => {
         title={t('search_address')}
         titleColor="text-[#ffffff]"
         backColor="bg-[#5D32B0]"
+        showLeftBtn
+        onLeftPress={router.back}
       />
 
       <div
