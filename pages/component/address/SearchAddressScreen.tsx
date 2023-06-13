@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import TopLayout from '../TopLayout'
+import Image from 'next/image'
 
 const SearchAddressScreen = () => {
   const router = useRouter()
@@ -42,9 +43,16 @@ const SearchAddressScreen = () => {
             pl-4
             items-center
             ${keywordClick && 'border border-[#5D32B0]'}
-            `}
+          `}
           onClick={() => setKeywordClick(true)}
         >
+          <Image
+            src={keywordClick ? '/big-on.png' : '/big-off.png'}
+            width={20}
+            height={20}
+            alt="check_image"
+            className="mr-3"
+          />
           {t('search_by_keyword_zipcode')}
         </div>
 
@@ -59,10 +67,16 @@ const SearchAddressScreen = () => {
             pl-4
             items-center
             ${!keywordClick && 'border border-[#5D32B0]'}
-           `}
+          `}
           onClick={() => setKeywordClick(false)}
         >
-          <div className="" />
+          <Image
+            src={!keywordClick ? '/big-on.png' : '/big-off.png'}
+            width={20}
+            height={20}
+            alt="check_image"
+            className="mr-3"
+          />
           {t('address_division')}
         </div>
       </div>
