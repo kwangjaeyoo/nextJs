@@ -44,6 +44,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
         pathname: '/address',
         query: { type: ADDRESS_TYPE.ADDRESS_BOOK },
       })
+      // TODO 갔다 왔을 때 데이터 처리....
     }
   }
 
@@ -193,31 +194,31 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
       <div className="flex flex-row mt-10 h-14 ml-8 mr-8">
         <div
           className=" 
-              flex 
-              w-1/2
-              mr-1
-              items-center
-              justify-center
-              bg-[#f4f4f4]
-              text-[#939393]
-              font-semibold
-              rounded-xl
-              shadow-lg"
+            flex 
+            w-1/2
+            mr-1
+            items-center
+            justify-center
+            bg-[#f4f4f4]
+            text-[#939393]
+            font-semibold
+            rounded-xl
+            shadow-lg"
           onClick={prevClick}
         >
           {t('text_prev')}
         </div>
         <div
           className=" 
-              flex
-              w-1/2
-              ml-1
-              items-center
-              justify-center
-              bg-[#7340BF]
-              text-white
-              font-semibold
-              rounded-xl"
+            flex
+            w-1/2
+            ml-1
+            items-center
+            justify-center
+            bg-[#7340BF]
+            text-white
+            font-semibold
+            rounded-xl"
           onClick={() => console.log('TODO ' + JSON.stringify(senderModel))}
         >
           {t('text_next')}

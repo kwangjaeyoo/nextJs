@@ -128,7 +128,7 @@ const RegistStep3: React.FC<RegistStep3Props> = ({
               font-semibold
               rounded-xl
               shadow-lg"
-          onClick={() => console.log('TODO ')}
+          onClick={prevClick}
         >
           {t('text_prev')}
         </div>
