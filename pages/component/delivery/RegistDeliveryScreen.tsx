@@ -72,7 +72,6 @@ const RegistDeliveryScreen = () => {
     <div className="h-screen bg-[#f4f4f4] overflow-y-auto">
       <TopLayout
         title={t('qdelivery_create')}
-        showLeftBtn
         showRightBtn
         onRightPress={() => console.log('TODO')}
       />

@@ -17,8 +17,6 @@ const Navbar = () => {
 
       if (data === 'home') {
         router.push('/')
-      } else if (data === 'itemList') {
-        router.push('/itemList')
       } else if (data === 'serverSide') {
         router.push('/server')
       } else if (data === 'static') {
@@ -80,20 +78,6 @@ const Navbar = () => {
                   onClick={() => itemClick('regi')}
                 >
                   {t('regi')}
-                </div>
-                <div
-                  className={`
-                    flex 
-                    ${
-                      activeItem === 'itemList' ? 'bg-pink-100' : 'bg-blue-100'
-                    } 
-                    items-center 
-                    justify-center
-                    `}
-                  style={{ minWidth: '150px', maxWidth: '300px' }}
-                  onClick={() => itemClick('itemList')}
-                >
-                  {t('itemList')}
                 </div>
                 <div
                   className={`

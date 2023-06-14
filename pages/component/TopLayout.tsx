@@ -7,6 +7,7 @@ interface TopLayoutProps {
   showLeftBtn?: boolean
   onLeftPress?: () => void
   showRightBtn?: boolean
+  rightBtnImage?: string
   onRightPress?: () => void
 }
 
@@ -17,6 +18,7 @@ const TopLayout: React.FC<TopLayoutProps> = ({
   showLeftBtn = false,
   onLeftPress,
   showRightBtn = false,
+  rightBtnImage = '/headic_close.png',
   onRightPress,
 }) => {
   return (
@@ -86,12 +88,7 @@ const TopLayout: React.FC<TopLayoutProps> = ({
               if (onRightPress) onRightPress()
             }}
           >
-            <Image
-              src={'/headic_close.png'}
-              width={25}
-              height={25}
-              alt="close"
-            />
+            <Image src={rightBtnImage} width={25} height={25} alt="close" />
           </div>
         )}
       </div>

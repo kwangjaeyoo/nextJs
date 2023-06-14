@@ -2,6 +2,7 @@ import { t } from 'i18next'
 import { useState } from 'react'
 
 import DeliveryItem from './DeliveryItem'
+import { useRouter } from 'next/router'
 
 interface RegistStep4Props {
   nextClick: () => void
@@ -9,6 +10,8 @@ interface RegistStep4Props {
 }
 
 const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
+  const router = useRouter()
+
   const [addPopup, setAddPopup] = useState(false)
   const [itemDataList, setItemDataList] = useState<any[]>([])
 
@@ -32,7 +35,11 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
             z-10
             "
           onClick={() => {
-            if (itemDataList.length < 4) setAddPopup(!addPopup)
+            if (itemDataList.length < 4) {
+              setAddPopup(!addPopup)
+            } else {
+              // TODO 다찾음....팝업..
+            }
           }}
         >
           + {t('text_add')}
@@ -53,7 +60,7 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
               className="h-10 flex items-center"
               onClick={() => {
                 setAddPopup(false)
-                console.log('TODO')
+                router.push('/itemList')
               }}
             >
               {t('add_before_item')}

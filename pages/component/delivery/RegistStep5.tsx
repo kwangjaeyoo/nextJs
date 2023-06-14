@@ -1,10 +1,10 @@
 import { t } from 'i18next'
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
 import { convertDateformat } from '@/pages/util/Util'
 
 import InputBox from '../InputBox'
-import Image from 'next/image'
 
 const RegistStep5 = () => {
   const [isRegistryOrder, setIsRegistryOrder] = useState(false)

@@ -52,6 +52,7 @@ const AddressBookScreen = () => {
         showLeftBtn
         onLeftPress={router.back}
       />
+
       <div className="flex flex-col p-4">
         <div className="flex">{t('address_promotion_msg')}</div>
         <div className="flex flex-row mt-3">
