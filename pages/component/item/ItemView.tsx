@@ -30,7 +30,6 @@ const ItemView: React.FC<ItemViewProps> = ({ item, click, onClick }) => {
         />
         <div className="flex flex-col ml-3">
           <div>TODO</div>
-          <div>TODO</div>
         </div>
       </div>
     </div>

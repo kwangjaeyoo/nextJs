@@ -9,6 +9,7 @@ import RegistStep3 from './RegistStep3'
 import RegistStep4 from './RegistStep4'
 import RegistStep5 from './RegistStep5'
 import RegistStep6 from './RegistStep6'
+import { useRouter } from 'next/router'
 
 export interface InationModel {
   search_from: string
@@ -30,7 +31,9 @@ export interface IaddressModel {
 }
 
 const RegistDeliveryScreen = () => {
-  const [position, setPosition] = useState(5)
+  const router = useRouter()
+
+  const [position, setPosition] = useState(6)
 
   const nationModel = useRef<InationModel>({
     search_from: '',
@@ -73,7 +76,7 @@ const RegistDeliveryScreen = () => {
       <TopLayout
         title={t('qdelivery_create')}
         showRightBtn
-        onRightPress={() => console.log('TODO')}
+        onRightPress={router.back}
       />
       <div className="flex flex-row">
         <RegiPosTopLayout pos={position} />
