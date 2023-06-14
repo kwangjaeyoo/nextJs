@@ -7,7 +7,8 @@ import { ADDRESS_TYPE } from '@/pages/address'
 
 import InputBox from '../InputBox'
 import { colourStyles } from '../modal/SelectStyle'
-import { InationModel, IaddressModel } from './RegistDeliveryScreen'
+import PurpleDot from '../PurpleDot'
+import { IaddressModel, InationModel } from './RegistDeliveryScreen'
 
 const inputTypeList = [
   { value: 'direct', label: t('direct_input') },
@@ -94,17 +95,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
 
         <div className="flex mt-5 mb-3">
           <div className="font-semi-bold text-[16px]">{t('name')}</div>
-          <div
-            className="
-              mt-1 
-              ml-2 
-              flex 
-              self-center
-              w-2
-              h-2 
-              bg-[#9772D1]
-              rounded-full"
-          />
+          <PurpleDot />
         </div>
         <InputBox
           placeholder=""
@@ -115,17 +106,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
 
         <div className="flex mt-5 mb-3">
           <div className="font-semi-bold text-[16px]">{t('address')}</div>
-          <div
-            className="
-              mt-1 
-              ml-2 
-              flex 
-              self-center
-              w-2
-              h-2 
-              bg-[#9772D1]
-              rounded-full"
-          />
+          <PurpleDot />
         </div>
 
         <div className="flex flex-row mb-3">
@@ -165,17 +146,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
           <div className="font-semi-bold text-[16px]">
             {t('telephone_number')}
           </div>
-          <div
-            className="
-              mt-1 
-              ml-2 
-              flex 
-              self-center
-              w-2
-              h-2 
-              bg-[#9772D1]
-              rounded-full"
-          />
+          <PurpleDot />
         </div>
         <InputBox
           placeholder=""

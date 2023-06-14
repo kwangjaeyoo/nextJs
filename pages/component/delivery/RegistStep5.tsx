@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { convertDateformat } from '@/pages/util/Util'
 
 import InputBox from '../InputBox'
+import PurpleDot from '../PurpleDot'
 
 const RegistStep5 = () => {
   const [isRegistryOrder, setIsRegistryOrder] = useState(false)
@@ -71,17 +72,7 @@ const RegistStep5 = () => {
           <div className="font-semi-bold text-[14px]">
             {t('request_pickup_date')}
           </div>
-          <div
-            className="
-              mt-1 
-              ml-2 
-              flex 
-              self-center
-              w-2
-              h-2 
-              bg-[#9772D1]
-              rounded-full"
-          />
+          <PurpleDot />
         </div>
         <div
           className="

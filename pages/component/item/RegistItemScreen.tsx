@@ -1,8 +1,10 @@
 import { t } from 'i18next'
-import TopLayout from '../TopLayout'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+
 import InputBox from '../InputBox'
+import PurpleDot from '../PurpleDot'
+import TopLayout from '../TopLayout'
 
 const RegistItemScreen = () => {
   const router = useRouter()
@@ -20,7 +22,7 @@ const RegistItemScreen = () => {
         onLeftPress={router.back}
       />
 
-      <div className="h-screen bg-[#f4f4f4] p-3">
+      <div className="h-screen bg-[#f4f4f4] p-3 overflow-y-auto">
         <div className="bg-white rounded">
           <div
             className="flex justify-between p-4"
@@ -28,17 +30,7 @@ const RegistItemScreen = () => {
           >
             <div className="flex flex-row">
               <>{t('item_default_info')}</>
-              <div
-                className="
-                  mt-1 
-                  ml-2 
-                  flex 
-                  self-center
-                  w-2
-                  h-2 
-                  bg-[#9772D1]
-                  rounded-full"
-              />
+              <PurpleDot />
             </div>
 
             <div>TODO</div>
@@ -57,18 +49,7 @@ const RegistItemScreen = () => {
 
                 <div className="mt-4 mb-2 flex flex-row">
                   <div className="">{t('item_name')}</div>
-
-                  <div
-                    className="
-                      mt-1 
-                      ml-2 
-                      flex 
-                      self-center
-                      w-2
-                      h-2 
-                      bg-[#9772D1]
-                      rounded-full"
-                  />
+                  <PurpleDot />
                 </div>
                 <InputBox placeholder="TODO" />
 
@@ -122,17 +103,7 @@ const RegistItemScreen = () => {
           >
             <div className="flex flex-row">
               <>{t('item_detail_info')}</>
-              <div
-                className="
-                  mt-1 
-                  ml-2 
-                  flex 
-                  self-center
-                  w-2
-                  h-2 
-                  bg-[#9772D1]
-                  rounded-full"
-              />
+              <PurpleDot />
             </div>
 
             <div>TODO</div>
@@ -158,17 +129,7 @@ const RegistItemScreen = () => {
                 <div className="mt-4 mb-2">
                   <div className="flex flex-row">
                     {t('url')}
-                    <div
-                      className="
-                        mt-1 
-                        ml-2 
-                        flex 
-                        self-center
-                        w-2
-                        h-2 
-                        bg-[#9772D1]
-                        rounded-full"
-                    />
+                    <PurpleDot />
                   </div>
                 </div>
                 <InputBox placeholder="TODO" />
@@ -215,7 +176,7 @@ const RegistItemScreen = () => {
             flex
             items-center
             justify-center  
-          bg-[#7340BF] 
+            bg-[#7340BF] 
             h-12 
             rounded 
             mt-5

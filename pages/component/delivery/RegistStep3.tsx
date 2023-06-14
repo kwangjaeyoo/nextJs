@@ -1,6 +1,7 @@
 import { t } from 'i18next'
 
 import InputBox from '../InputBox'
+import PurpleDot from '../PurpleDot'
 import { IaddressModel, InationModel } from './RegistDeliveryScreen'
 
 interface RegistStep3Props {
@@ -38,33 +39,13 @@ const RegistStep3: React.FC<RegistStep3Props> = ({
 
         <div className="flex mt-5 mb-3">
           <div className="font-semi-bold text-[16px]">{t('name')}</div>
-          <div
-            className="
-              mt-1 
-              ml-2 
-              flex 
-              self-center
-              w-2
-              h-2 
-              bg-[#9772D1]
-              rounded-full"
-          />
+          <PurpleDot />
         </div>
         <InputBox placeholder="" />
 
         <div className="flex mt-5 mb-3">
           <div className="font-semi-bold text-[16px]">{t('address')}</div>
-          <div
-            className="
-              mt-1 
-              ml-2 
-              flex 
-              self-center
-              w-2
-              h-2 
-              bg-[#9772D1]
-              rounded-full"
-          />
+          <PurpleDot />
         </div>
 
         <div className="flex flex-row mb-3">
@@ -100,17 +81,7 @@ const RegistStep3: React.FC<RegistStep3Props> = ({
           <div className="font-semi-bold text-[16px]">
             {t('telephone_number')}
           </div>
-          <div
-            className="
-              mt-1 
-              ml-2 
-              flex 
-              self-center
-              w-2
-              h-2 
-              bg-[#9772D1]
-              rounded-full"
-          />
+          <PurpleDot />
         </div>
         <InputBox placeholder="" onChange={(value) => console.log(value)} />
       </div>

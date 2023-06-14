@@ -1,8 +1,10 @@
 import { t } from 'i18next'
-import React, { useState, MouseEvent } from 'react'
-import InputBox from '../InputBox'
+import React, { MouseEvent, useState } from 'react'
 import Select, { StylesConfig } from 'react-select'
+
+import InputBox from '../InputBox'
 import { colourStyles } from '../modal/SelectStyle'
+import PurpleDot from '../PurpleDot'
 
 interface DeliveryItemProps {
   index: number
@@ -59,49 +61,19 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
 
           <div className="flex mt-5 mb-3">
             <div className="font-semi-bold text-[14px]">{t('item_name')}</div>
-            <div
-              className="
-                mt-1 
-                ml-2 
-                flex 
-                self-center
-                w-2
-                h-2 
-                bg-[#9772D1]
-                rounded-full"
-            />
+            <PurpleDot />
           </div>
           <InputBox placeholder="" />
 
           <div className="flex mt-5 mb-3">
             <div className="font-semi-bold text-[14px]">{t('item_count')}</div>
-            <div
-              className="
-                mt-1 
-                ml-2 
-                flex 
-                self-center
-                w-2
-                h-2 
-                bg-[#9772D1]
-                rounded-full"
-            />
+            <PurpleDot />
           </div>
           <InputBox placeholder="" />
 
           <div className="flex mt-5 mb-3">
             <div className="font-semi-bold text-[14px]">{t('item_price')}</div>
-            <div
-              className="
-                mt-1 
-                ml-2 
-                flex 
-                self-center
-                w-2
-                h-2 
-                bg-[#9772D1]
-                rounded-full"
-            />
+            <PurpleDot />
           </div>
           <div className="flex flex-row">
             <div className="flew w-1/2 mr-1">
@@ -120,17 +92,7 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
 
           <div className="flex mt-5 mb-3">
             <div className="font-bold text-[14px]">{t('url_or_picture')}</div>
-            <div
-              className="
-              mt-1 
-              ml-2 
-              flex 
-              self-center
-              w-2
-              h-2 
-              bg-[#9772D1]
-              rounded-full"
-            />
+            <PurpleDot />
           </div>
 
           <div className="text-[13px]">{t('msg_required_url_or_image')}</div>

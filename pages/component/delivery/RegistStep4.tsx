@@ -1,8 +1,8 @@
 import { t } from 'i18next'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import DeliveryItem from './DeliveryItem'
-import { useRouter } from 'next/router'
 
 interface RegistStep4Props {
   nextClick: () => void

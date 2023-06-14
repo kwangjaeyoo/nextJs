@@ -6,12 +6,13 @@ import Select, { StylesConfig } from 'react-select'
 import BottomModal from '@/pages/component/modal/BottomModal'
 import Modal from '@/pages/component/modal/Modal'
 import {
-  callMSmartShipAPI,
   callMobileSmartShipApi,
+  callMSmartShipAPI,
 } from '@/pages/util/ServerApi'
 
 import Checkbox from '../Checkbox'
 import { colourStyles } from '../modal/SelectStyle'
+import PurpleDot from '../PurpleDot'
 import { InationModel } from './RegistDeliveryScreen'
 
 const fromNationList = [
@@ -178,17 +179,7 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
           <div className="font-semi-bold text-[16px]">
             {t('origin_country')}
           </div>
-          <div
-            className="
-              mt-1 
-              ml-2 
-              flex 
-              self-center
-              w-2
-              h-2 
-              bg-[#9772D1]
-              rounded-full"
-          />
+          <PurpleDot />
         </div>
 
         <div className="h-14 mt-3">
@@ -205,17 +196,7 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
           <div className="font-semi-bold text-[16px]">
             {t('destination_country')}
           </div>
-          <div
-            className="
-              mt-1 
-              ml-2 
-              flex 
-              self-center
-              w-2
-              h-2 
-              bg-[#9772D1]
-              rounded-full"
-          />
+          <PurpleDot />
         </div>
 
         <div className="h-14 mt-3">
