@@ -9,6 +9,8 @@ interface ModalPops {
   title?: string
   body?: React.ReactElement
   footer?: React.ReactElement
+  showFooter?: boolean
+  outsideClick?: () => void
   actionLabel: string
   disabled?: boolean
   secondaryActionLable?: string
@@ -21,6 +23,8 @@ const Modal: React.FC<ModalPops> = ({
   title,
   body,
   footer,
+  showFooter = true,
+  outsideClick,
   actionLabel,
   disabled,
   secondaryActionLable,
@@ -47,7 +51,7 @@ const Modal: React.FC<ModalPops> = ({
   }, [secondaryAction, disabled])
 
   if (!isOpen) {
-    return null
+    return <></>
   }
 
   return (
@@ -66,6 +70,9 @@ const Modal: React.FC<ModalPops> = ({
           focus:outline-none
           bg-neutral-800/70
           "
+        onClick={() => {
+          if (outsideClick) outsideClick()
+        }}
       >
         <div
           className="
@@ -74,6 +81,9 @@ const Modal: React.FC<ModalPops> = ({
             my-6
             mx-auto 
           "
+          onClick={(event) => {
+            event.stopPropagation()
+          }}
         >
           {/* content */}
           <div
@@ -120,38 +130,45 @@ const Modal: React.FC<ModalPops> = ({
 
               {/*body*/}
               {body ? (
-                <div className="relative p-6 flex-auto"> {body} </div>
+                <div className="relative p-6 flex-auto flex justify-center">
+                  {body}
+                </div>
               ) : (
                 <></>
               )}
 
-              {/*footer*/}
-              <div className="flex flex-col gap-2 p-6">
-                <div
-                  className="
-                    flex 
-                    flex-row 
-                    items-center 
-                    gap-4  
-                    w-full
-                  "
-                >
-                  {secondaryActionLable && secondaryAction && (
-                    <Button
-                      outline
-                      disable={disabled}
-                      label={secondaryActionLable}
-                      onClick={secondaryAction}
-                    />
-                  )}
-                  <Button
-                    disable={disabled}
-                    label={actionLabel}
-                    onClick={handleSubmit}
-                  />
-                </div>
-                {footer}
-              </div>
+              {showFooter && (
+                <>
+                  {/*footer*/}
+                  <div className="flex flex-col gap-2 p-6">
+                    <div
+                      className="
+      flex 
+      flex-row 
+      items-center 
+      gap-4  
+      w-full
+    "
+                    >
+                      {secondaryActionLable && secondaryAction && (
+                        <Button
+                          outline
+                          disable={disabled}
+                          label={secondaryActionLable}
+                          onClick={secondaryAction}
+                        />
+                      )}
+
+                      <Button
+                        disable={disabled}
+                        label={actionLabel}
+                        onClick={handleSubmit}
+                      />
+                    </div>
+                    {footer}
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

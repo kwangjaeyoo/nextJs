@@ -16,9 +16,7 @@ const LoadingModal = () => {
             transform: 'translate(0px, -50%)',
           }}
         >
-          <Loader active inline="centered">
-            Loading
-          </Loader>
+          <div>Loading</div>
         </div>
       )}
     </>

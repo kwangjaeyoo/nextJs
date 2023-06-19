@@ -1,5 +1,6 @@
-import 'semantic-ui-css/semantic.min.css'
-import '../styles/globals.css'
+// import 'semantic-ui-css/semantic.min.css'
+import '@/styles/globals.css'
+import '@/styles/Calendar.css'
 import '@/pages/util/Constants'
 
 import i18n from 'i18next'
@@ -9,8 +10,8 @@ import { initReactI18next } from 'react-i18next'
 
 import en from '../public/locales/en/common.json'
 import ko from '../public/locales/ko/common.json'
-import Layout from './layout'
 import LoadingModal from './component/modal/LoadingModal'
+import Layout from './layout'
 
 import type { AppProps } from 'next/app'
 

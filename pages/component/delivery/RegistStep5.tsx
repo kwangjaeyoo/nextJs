@@ -4,28 +4,22 @@ import { useEffect, useRef, useState } from 'react'
 
 import { convertDateformat } from '@/pages/util/Util'
 
+import CustomCalendar from '../calendar/CustomCalendar'
 import InputBox from '../InputBox'
+import Modal from '../modal/Modal'
 import PurpleDot from '../PurpleDot'
 
 const RegistStep5 = () => {
   const [isRegistryOrder, setIsRegistryOrder] = useState(false)
-  const [pickupDate, setPickupDate] = useState('')
+  const [showModal, setShowModal] = useState({ content: '', btn: '' })
+  const [calendarModalShow, setCalendarModalShow] = useState(false)
 
-  const didMount = useRef(false)
+  const tomorrowDate = useRef<Date>(new Date())
 
-  useEffect(() => {
-    if (didMount.current) {
-      console.log('RegistStep5')
-      setupPickupDate()
-    } else {
-      didMount.current = true
-    }
-  })
-
-  const setupPickupDate = () => {
+  const setupPickupDate = (): Date => {
     const date = new Date()
     const year = date.getFullYear()
-    let month = date.getMonth() + 1
+    let month = date.getMonth()
     let day = date.getDate()
 
     let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
@@ -38,9 +32,22 @@ const RegistStep5 = () => {
       day = date.getDate() + 1
     }
 
-    let pickupDate = convertDateformat(year, month, day)
-    setPickupDate(pickupDate)
+    tomorrowDate.current = new Date(year, month, day)
+
+    return new Date(year, month, day)
   }
+
+  const [pickupDate, setPickupDate] = useState(setupPickupDate())
+
+  const didMount = useRef(false)
+
+  useEffect(() => {
+    if (didMount.current) {
+      console.log('RegistStep5')
+    } else {
+      didMount.current = true
+    }
+  })
 
   return (
     <div className="flex flex-col m-8">
@@ -84,9 +91,9 @@ const RegistStep5 = () => {
             rounded 
             border 
             border-[#dbdbdb]"
-          onClick={() => console.log('TODO')}
+          onClick={() => setCalendarModalShow(true)}
         >
-          <div>{pickupDate}</div>
+          <div>{convertDateformat(pickupDate)}</div>
           <Image
             src={'/icon_calendar.png'}
             width={25}
@@ -181,6 +188,40 @@ const RegistStep5 = () => {
           {isRegistryOrder ? t('text_signup') : t('search_estimated_costs')}
         </div>
       </div>
+
+      <Modal
+        isOpen={calendarModalShow}
+        onSubmit={() => setCalendarModalShow(false)}
+        title={t('request_pickup_date')!!}
+        actionLabel={''}
+        showFooter={false}
+        outsideClick={() => setCalendarModalShow(false)}
+        body={
+          <CustomCalendar
+            settingValue={pickupDate}
+            selectDay={(value) => {
+              const diff = value.getTime() - tomorrowDate.current.getTime()
+              console.log('diff ' + diff)
+              if (diff >= 0) {
+                setPickupDate(value)
+                setCalendarModalShow(false)
+              } else {
+                setShowModal({
+                  content: "Please select a date after tomorrow's date.",
+                  btn: t('ok'),
+                })
+              }
+            }}
+          />
+        }
+      />
+
+      <Modal
+        isOpen={showModal.content !== ''}
+        onSubmit={() => setShowModal({ content: '', btn: '' })}
+        title={showModal.content}
+        actionLabel={showModal.btn}
+      />
     </div>
   )
 }
