@@ -85,5 +85,13 @@
   "customs_info": "통관 정보",
   "oversea_trade_code": "해외/거래코드",
   "postal_tax": "행우세",
-  "customs_msg": "* 해외 배송 시, 통관을 위한 통관 정보가 필요합니다. \n입력하신 내용을 바탕으로 통관이 진행되니, 정확한 정보를 입력해 주세요."
+  "customs_msg": "* 해외 배송 시, 통관을 위한 통관 정보가 필요합니다. \n입력하신 내용을 바탕으로 통관이 진행되니, 정확한 정보를 입력해 주세요.",
+  "address_input": "주소 입력",
+  "local_language": "현지어",
+  "zipcode": "우편번호",
+  "default_addr": "기본 주소",
+  "detail_addr": "상세 주소",
+  "english": "영어",
+  "save": "저장",
+  "build_zipcode": "지역명, 건물명, 우편번호"
 }

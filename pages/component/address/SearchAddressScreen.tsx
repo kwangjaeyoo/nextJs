@@ -92,7 +92,12 @@ const SearchAddressScreen = () => {
             text-white
             p-4
             rounded-xl"
-          onClick={() => console.log('TODO')}
+          onClick={() => {
+            if (keywordClick) {
+              router.push('/component/address/ZipcodeSearchScreen')
+            } else {
+            }
+          }}
         >
           {t('text_next')}
         </div>
@@ -110,7 +115,10 @@ const SearchAddressScreen = () => {
             text-[#5D32B0]
             p-4
             rounded-xl"
-          onClick={() => console.log('TODO')}
+          onClick={() => {
+            router.push('/component/address/EnterAddressScreen')
+            console.log('TODO')
+          }}
         >
           {t('address_direct')}
         </div>

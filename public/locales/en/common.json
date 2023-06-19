@@ -84,5 +84,13 @@
   "customs_info": "Customs clearance information",
   "oversea_trade_code": "Overseas/Transaction Code",
   "postal_tax": "Parcel Tax Code (for china)",
-  "customs_msg": "* For overseas delivery, customs clearance information is required.\nTherefore, please enter the correct information."
+  "customs_msg": "* For overseas delivery, customs clearance information is required.\nTherefore, please enter the correct information.",
+  "address_input": "Enter Address",
+  "local_language": "local language",
+  "zipcode": "Zip code",
+  "default_addr": "Address 1",
+  "detail_addr": "Address 2",
+  "english": "English",
+  "save": "Save",
+  "build_zipcode": "City, building, zip code"
 }

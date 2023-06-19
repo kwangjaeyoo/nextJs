@@ -106,7 +106,18 @@ const RegistStep5 = () => {
           {t('pickup_memo')}
         </div>
 
-        <InputBox placeholder="TODO" height="h-32" />
+        <textarea
+          className="
+            h-32
+            p-3
+            border 
+            rounded
+            border-[#dbdbdb]
+            focus:outline-none
+            focus:border-[#7340BF]
+            focus:border-2
+            resize-none"
+        />
       </div>
 
       <div

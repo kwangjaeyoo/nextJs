@@ -4,7 +4,6 @@ interface InputBoxProp {
   placeholder: string
   disable?: boolean
   type?: HTMLInputTypeAttribute
-  height?: string
   onChange?: (value: string) => void
 }
 
@@ -12,7 +11,6 @@ const InputBox: React.FC<InputBoxProp> = ({
   placeholder,
   disable,
   type = 'string',
-  height = 'h-12',
   onChange,
 }) => {
   return (
@@ -22,7 +20,7 @@ const InputBox: React.FC<InputBoxProp> = ({
         border
         w-full
         border-[#dbdbdb]
-        ${height}
+        h-12
         rounded 
         items-center 
         pl-3
@@ -30,6 +28,7 @@ const InputBox: React.FC<InputBoxProp> = ({
         focus:outline-none
         focus:ring-[#7340BF]
         focus:border-[#7340BF]
+        focus:border-2
         disabled:text-[#939393]
         disabled:bg-white
         text-[#0D1E20]
