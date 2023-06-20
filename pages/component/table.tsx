@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Button } from 'semantic-ui-react'
 
 import {
   createColumnHelper,
@@ -291,9 +290,9 @@ const TableView = () => {
 
   return (
     <div className="p-10">
-      <Button onClick={() => setFixedHeader(!fixedHeader)}>
+      {/* <Button onClick={() => setFixedHeader(!fixedHeader)}>
         {fixedHeader ? 'Unfixed header' : 'fixed header'}
-      </Button>
+      </Button> */}
       <table className="mt-4">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

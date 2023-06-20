@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { Dropdown, DropdownProps } from 'semantic-ui-react'
+// import { Dropdown, DropdownProps } from 'semantic-ui-react'
 
 export default function Language() {
   const router = useRouter()
@@ -18,7 +18,7 @@ export default function Language() {
   return (
     <div style={{ paddingLeft: '30px', paddingRight: '30px' }}>
       <h1>language code = {select}</h1>
-      <Dropdown
+      {/* <Dropdown
         style={{ width: '200px' }}
         fluid
         search
@@ -39,7 +39,7 @@ export default function Language() {
             router.push({ pathname, query }, asPath, { locale: locale })
           }
         }}
-      />
+      /> */}
     </div>
   )
 }
