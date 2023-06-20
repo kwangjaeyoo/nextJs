@@ -3,7 +3,7 @@ import React, { MouseEvent, useState } from 'react'
 import Select, { StylesConfig } from 'react-select'
 
 import InputBox from '../InputBox'
-import { colourStyles } from '../modal/SelectStyle'
+import { colourStyles } from '@/util/SelectStyle'
 import PurpleDot from '../PurpleDot'
 
 interface DeliveryItemProps {

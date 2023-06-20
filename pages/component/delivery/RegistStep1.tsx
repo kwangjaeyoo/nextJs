@@ -5,13 +5,10 @@ import Select, { StylesConfig } from 'react-select'
 
 import BottomModal from '@/pages/component/modal/BottomModal'
 import Modal from '@/pages/component/modal/Modal'
-import {
-  callMobileSmartShipApi,
-  callMSmartShipAPI,
-} from '@/pages/util/ServerApi'
+import { callMobileSmartShipApi, callMSmartShipAPI } from '@/util/ServerApi'
 
 import Checkbox from '../Checkbox'
-import { colourStyles } from '../modal/SelectStyle'
+import { colourStyles } from '@/util/SelectStyle'
 import PurpleDot from '../PurpleDot'
 import { InationModel } from './RegistDeliveryScreen'
 

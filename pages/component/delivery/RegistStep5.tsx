@@ -2,7 +2,7 @@ import { t } from 'i18next'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
-import { convertDateformat } from '@/pages/util/Util'
+import { convertDateformat } from '@/util/Util'
 
 import CustomCalendar from '../calendar/CustomCalendar'
 import InputBox from '../InputBox'

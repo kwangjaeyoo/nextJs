@@ -6,7 +6,7 @@ import Select from 'react-select'
 import { ADDRESS_TYPE } from '@/pages/address'
 
 import InputBox from '../InputBox'
-import { colourStyles } from '../modal/SelectStyle'
+import { colourStyles } from '@/util/SelectStyle'
 import PurpleDot from '../PurpleDot'
 import { IaddressModel, InationModel } from './RegistDeliveryScreen'
 
