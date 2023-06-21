@@ -1,22 +1,17 @@
+import axios from 'axios'
 import { t } from 'i18next'
 import { useEffect, useRef, useState } from 'react'
 import { TfiAngleRight } from 'react-icons/tfi'
-import Select, { StylesConfig } from 'react-select'
+import Select from 'react-select'
 
 import BottomModal from '@/pages/component/modal/BottomModal'
 import Modal from '@/pages/component/modal/Modal'
-import { callMobileSmartShipApi, callMSmartShipAPI } from '@/util/ServerApi'
+import useLoadingModal from '@/pages/hook/useLoadingModal'
+import { colourStyles } from '@/util/SelectStyle'
 
 import Checkbox from '../Checkbox'
-import { colourStyles } from '@/util/SelectStyle'
 import PurpleDot from '../PurpleDot'
 import { InationModel } from './RegistDeliveryScreen'
-
-const fromNationList = [
-  { value: 'SG', label: 'Singapore' },
-  { value: 'KR', label: 'South Korea' },
-  { value: 'MY', label: 'Malaysia' },
-]
 
 interface RegistStep1Props {
   nationModel: InationModel
@@ -28,6 +23,9 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
   nextClick,
 }) => {
   const didMount = useRef(false)
+  const loadingModal = useLoadingModal()
+
+  const selectToNation = useRef<any>(null)
 
   const [showModal, setShowModal] = useState({ content: '', btn: '' })
   const [showBtnModal, setShowBtnModal] = useState(false)
@@ -36,43 +34,55 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
   const [fromNation, setFromNation] = useState({ nation: '', nationIso: '' })
   const [toNation, setToNation] = useState({ nation: '', nationIso: '' })
 
+  const [fromNationList, setFromNationList] = useState<any>([])
   const [toNationList, setToNationList] = useState<any>([])
 
   const loadFromNation = async () => {
-    try {
-      const result = await callMSmartShipAPI('GetStartNation', null)
-      if (result) {
-        if (result.status === 200) {
-          const resultList = JSON.parse(result.data.ResultObject)
-
-          let list = []
-          for (var i = 0; i < resultList.length; i++) {
-            // sg / kr / my 만 가능
-            if (
-              resultList[i].start_nation_cd === 'SG' ||
-              resultList[i].start_nation_cd === 'KR' ||
-              resultList[i].start_nation_cd === 'MY'
-            ) {
-              const conventItem = {
-                nation_name: resultList[i].nation_name,
-                nation_isocode: resultList[i].start_nation_cd,
-              }
-              list.push(conventItem)
-            }
-          }
-          console.log(list)
+    loadingModal.onOpen()
+    const result = await axios.post('/api/callMSmartShipAPI', {
+      apiName: 'GetStartNation',
+    })
+    if (result && result.status === 200) {
+      const resultList = JSON.parse(result.data.ResultObject)
+      let list: { value: any; label: any }[] = []
+      resultList.map((item: any) => {
+        if (
+          item.start_nation_cd === 'SG' ||
+          item.start_nation_cd === 'KR' ||
+          item.start_nation_cd === 'MY'
+        ) {
+          list.push({ value: item.start_nation_cd, label: item.nation_name })
         }
-      }
+      })
+      setFromNationList(list)
+    }
+    loadingModal.onClose()
+  }
 
-      // const param = {}
-      // const re = await callMobileSmartShipApi('GetSmartShipOrderList', param)
-    } catch (e) {}
+  const loadToNation = async () => {
+    loadingModal.onOpen()
+    const result = await axios.post('/api/callMSmartShipAPI', {
+      apiName: 'GetQdeliveryDeliveryNation',
+      param: {
+        start_nation_cd: 'SG',
+      },
+    })
+    if (result && result.status === 200) {
+      const resultList = JSON.parse(result.data.ResultObject)
+      let list: { value: any; label: any }[] = []
+      resultList.map((item: any) => {
+        list.push({ value: item.arrive_nation_cd, label: item.nation_nm })
+      })
+      setToNationList(list)
+    }
+    loadingModal.onClose()
   }
 
   useEffect(() => {
     if (didMount.current) {
-      console.log('RegistStep1')
-      // loadFromNation()
+      console.log('RegistStep1 !')
+
+      loadFromNation()
 
       setFromNation({
         nation: nationModel.search_from,
@@ -90,10 +100,15 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
 
   const settingFromNation = (value: any) => {
     setFromNation({ nationIso: value.value, nation: value.label })
+    setToNation({ nationIso: '', nation: '' })
+
+    if (selectToNation.current) {
+      selectToNation.current.clearValue()
+    }
 
     let list = []
     if (value.value === 'SG') {
-      // TODO api call
+      loadToNation()
     } else if (value.value === 'KR') {
       list = [
         { label: 'Singapore', value: 'SG' },
@@ -116,7 +131,9 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
   }
 
   const settingToNation = (value: any) => {
-    setToNation({ nationIso: value.value, nation: value.label })
+    if (value) {
+      setToNation({ nationIso: value.value, nation: value.label })
+    }
   }
 
   const checkNationSelect = () => {
@@ -198,6 +215,7 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
 
         <div className="h-14 mt-3">
           <Select
+            ref={selectToNation}
             styles={colourStyles}
             isSearchable={false}
             options={toNationList}
