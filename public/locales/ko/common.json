@@ -93,5 +93,11 @@
   "detail_addr": "상세 주소",
   "english": "영어",
   "save": "저장",
-  "build_zipcode": "지역명, 건물명, 우편번호"
+  "build_zipcode": "지역명, 건물명, 우편번호",
+  "no_input_name": "이름을 입력해 주세요.",
+  "no_input_zipcode": "우편번호를 입력해 주세요. ",
+  "no_input_address": "주소를 입력해 주세요. ",
+  "no_input_address_en": "영문 주소지를 입력해 주세요.",
+  "no_input_tel": "전화번호를 입력해주세요. ",
+  "english_address": "영문 주소"
 }

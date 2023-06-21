@@ -92,5 +92,11 @@
   "detail_addr": "Address 2",
   "english": "English",
   "save": "Save",
-  "build_zipcode": "City, building, zip code"
+  "build_zipcode": "City, building, zip code",
+  "no_input_name": "Please input the recipient\u0027s name. ",
+  "no_input_zipcode": "Please input the Zipcode.",
+  "no_input_address": "Please input the address. ",
+  "no_input_address_en": "Please input the address in English. ",
+  "no_input_tel": "Please input the mobile number. ",
+  "english_address": "Address in English"
 }

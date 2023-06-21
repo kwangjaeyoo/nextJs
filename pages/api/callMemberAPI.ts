@@ -12,19 +12,19 @@ export default async function handler(
     const sendingParams = {
       authKey: global.userKey,
     }
+    const url = global.site + '/MSmartShipMemberApi/' + apiName
 
-    const result = await axios.request<any, any>({
+    const result = await axios({
       method: 'post',
-      url: global.site + '/MSmartShipApi/' + apiName,
+      url: url,
 
       headers: {
         'Contnet-Type': 'application/json',
-        // 'User-Agent': global.userAgent,
+        // 'User-Agent': getUserAgent(), TODO
       },
       data: params,
       params: sendingParams,
       timeout: 10000,
-      withCredentials: true, // 쿠키 cors 통신 설정
     })
 
     return res.status(result.status).json(result.data)

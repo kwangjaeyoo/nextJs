@@ -1,8 +1,6 @@
 import { t } from 'i18next'
 import { useRouter } from 'next/router'
 
-import { ADDRESS_TYPE } from '@/pages/address'
-
 import InputBox from '../InputBox'
 import PurpleDot from '../PurpleDot'
 import { IaddressModel, InationModel } from './RegistDeliveryScreen'
@@ -69,7 +67,6 @@ const RegistStep3: React.FC<RegistStep3Props> = ({
               () =>
                 router.push({
                   pathname: '/address',
-                  query: { type: ADDRESS_TYPE.SEARCH_ADDRESS },
                 })
               // TODO 갔다 왔을 때 처리 필요...
             }

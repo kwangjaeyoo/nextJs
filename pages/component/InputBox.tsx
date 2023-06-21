@@ -1,6 +1,7 @@
 import { HTMLInputTypeAttribute } from 'react'
 
 interface InputBoxProp {
+  value?: string
   placeholder: string
   disable?: boolean
   type?: HTMLInputTypeAttribute
@@ -8,6 +9,7 @@ interface InputBoxProp {
 }
 
 const InputBox: React.FC<InputBoxProp> = ({
+  value = '',
   placeholder,
   disable,
   type = 'string',
@@ -32,12 +34,15 @@ const InputBox: React.FC<InputBoxProp> = ({
         disabled:text-[#939393]
         disabled:bg-white
         text-[#0D1E20]
-        `}
+      `}
+      value={value}
       type={type}
       placeholder={placeholder}
       disabled={disable}
       onChange={(value) => {
-        if (onChange) onChange(value.target.value)
+        if (onChange) {
+          onChange(value.target.value)
+        }
       }}
     />
   )

@@ -71,6 +71,11 @@ const RegistDeliveryScreen = () => {
     setPosition(position + 1)
   }
 
+  const goRevInputStep = (sender: IaddressModel) => {
+    senderModel.current = sender
+    setPosition(position + 1)
+  }
+
   return (
     <div className="h-screen bg-[#f4f4f4] overflow-y-auto">
       <TopLayout
@@ -91,7 +96,7 @@ const RegistDeliveryScreen = () => {
         <RegistStep2
           nationModel={nationModel.current}
           senderModel={senderModel.current}
-          nextClick={() => console.log('TODO')}
+          nextClick={goRevInputStep}
           prevClick={() => setPosition(1)}
         />
       )}

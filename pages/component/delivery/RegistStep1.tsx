@@ -80,7 +80,7 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
 
   useEffect(() => {
     if (didMount.current) {
-      console.log('RegistStep1 !')
+      console.log('RegistStep1')
 
       loadFromNation()
 
@@ -200,6 +200,7 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
           <Select
             styles={colourStyles}
             isSearchable={false}
+            defaultValue={fromNationList[0]}
             options={fromNationList}
             components={{ IndicatorSeparator: () => null }}
             onChange={settingFromNation}
@@ -218,6 +219,7 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
             ref={selectToNation}
             styles={colourStyles}
             isSearchable={false}
+            defaultValue={toNationList[0]}
             options={toNationList}
             components={{ IndicatorSeparator: () => null }}
             onChange={(value) => settingToNation(value)}
