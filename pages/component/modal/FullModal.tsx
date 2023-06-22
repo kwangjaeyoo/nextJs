@@ -140,7 +140,7 @@ const FullModal: React.FC<FullModalPops> = ({
             )}
           </div>
 
-          <div className="flex flex-col overflow-auto">{body}</div>
+          <div className="flex flex-col  flex-grow overflow-auto">{body}</div>
         </div>
       </div>
     </>

@@ -101,5 +101,8 @@
   "no_input_tel": "전화번호를 입력해주세요. ",
   "english_address": "영문 주소",
   "keyword_search": "키워드을 입력하고 검색 버튼을 탭하면\n검색 결과가 표시됩니다.",
-  "no_result_address": "검색 결과가 없습니다.\n다시 입력해 주세요."
+  "no_result_address": "검색 결과가 없습니다.\n다시 입력해 주세요.",
+  "select_state": "주(도) 선택",
+  "select_street": "거리(도로명) 선택",
+  "select_city": "도시(구) 선택"
 }

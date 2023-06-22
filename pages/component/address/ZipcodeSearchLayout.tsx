@@ -155,7 +155,7 @@ const ZipcodeSearchLayout: React.FC<ZipcodeSearchLayoutProps> = ({
   )
 }
 
-const getFrontAddress_local = (item: any, nation: string) => {
+export const getFrontAddress_local = (item: any, nation: string) => {
   let addressString = ''
   switch (nation) {
     // case 'KR':
