@@ -20,6 +20,14 @@ interface props {
   setIsOpen: (value: boolean) => void
 }
 
+export interface addressData {
+  zipCode: string
+  frontAddress: string
+  backAddress: string
+  frontAddressEn: string
+  backAddressEn: string
+}
+
 const SearchAddressModal: React.FC<props> = ({
   isOpen,
   countryCode = 'SG',
@@ -69,9 +77,17 @@ const SearchAddressModal: React.FC<props> = ({
               selectAddress={(item) => console.log(item)}
             />
           )}
-          {showType == SHOW_TYPE.street && <StreetAddressLayout />}
+          {showType == SHOW_TYPE.street && (
+            <StreetAddressLayout
+              countryCode={countryCode}
+              selectAddress={(item) => console.log(item)}
+            />
+          )}
           {showType == SHOW_TYPE.direct && (
-            <DirectAddressLayout selectAddress={(item) => console.log(item)} />
+            <DirectAddressLayout
+              countryCode={countryCode}
+              selectAddress={(item) => console.log(item)}
+            />
           )}
         </div>
       }

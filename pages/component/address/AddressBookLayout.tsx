@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { t } from 'i18next'
 import { useEffect, useRef, useState } from 'react'
+
 import AddressItem from './AddressItem'
 
 interface AddressBookLayoutProps {
@@ -145,7 +146,7 @@ const AddressBookLayout: React.FC<AddressBookLayoutProps> = ({ itemClick }) => {
       </div>
       <div className="h-1.5 bg-gradient-to-b from-[#dbdbdb]" />
 
-      <div className="flex flex-col pl-4 pr-4 bg-[#f4f4f4]  overflow-auto ">
+      <div className="flex flex-col pl-4 pr-4 bg-[#f4f4f4] overflow-auto">
         {itemList.map((item, index) => (
           <AddressItem key={index} item={item} onClick={itemClick} />
         ))}

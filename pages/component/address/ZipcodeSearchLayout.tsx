@@ -5,9 +5,11 @@ import { useState } from 'react'
 
 import useLoadingModal from '@/pages/hook/useLoadingModal'
 
+import { addressData } from './SearchAddressModal'
+
 interface ZipcodeSearchLayoutProps {
   countryCode: string
-  selectAddress: (item: any) => void
+  selectAddress: (item: addressData) => void
 }
 
 const ZipcodeSearchLayout: React.FC<ZipcodeSearchLayoutProps> = ({
@@ -18,6 +20,7 @@ const ZipcodeSearchLayout: React.FC<ZipcodeSearchLayoutProps> = ({
 
   const [text, setText] = useState('')
   const [itemList, setItemList] = useState<any[]>([])
+  const [clickSearch, setClickSearch] = useState(false)
 
   const search = async () => {
     if (text.trim().length == 0) {
@@ -79,8 +82,10 @@ const ZipcodeSearchLayout: React.FC<ZipcodeSearchLayoutProps> = ({
       })
 
       if (result && result.status === 200) {
-        setItemList(result.data)
-        // TODO data 가 없을때 처리 ....
+        setClickSearch(true)
+        if (result.data.length > 0) {
+          setItemList(result.data)
+        }
       }
     } catch (e) {
       console.log(e)
@@ -124,7 +129,17 @@ const ZipcodeSearchLayout: React.FC<ZipcodeSearchLayoutProps> = ({
           <div key={index} className="flex flex-col h-12">
             <div
               className={`flex h-12 items-center p-2 active:bg-[#D5C6EC]`}
-              onClick={() => selectAddress(item)}
+              onClick={() => {
+                const address: addressData = {
+                  zipCode: item.ZipCode,
+                  frontAddress: item.State + ' ' + item.City,
+                  backAddress: item.Street + ' ' + item.Number,
+                  frontAddressEn: item.StateEn + ' ' + item.CityEn,
+                  backAddressEn: item.StreetEn + ' ' + item.NumberEn,
+                }
+
+                selectAddress(address)
+              }}
             >
               ( {item.ZipCode} ) {getFrontAddress_local(item, countryCode)}
             </div>
@@ -132,7 +147,9 @@ const ZipcodeSearchLayout: React.FC<ZipcodeSearchLayoutProps> = ({
           </div>
         ))
       ) : (
-        <div className="m-20 text-[#5D32B0]">{t('keyword_search')}</div>
+        <div className="m-20 text-[#5D32B0]">
+          {clickSearch ? t('no_result_address') : t('keyword_search')}
+        </div>
       )}
     </>
   )

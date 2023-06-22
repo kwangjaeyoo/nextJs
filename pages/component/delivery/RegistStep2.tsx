@@ -268,7 +268,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
             itemClick={(value) => {
               // TODO 국가가 다름...처리
               // if (value.nation_cd == nationModel.search_fromCode) {
-              console.log('TODO value ' + JSON.stringify(value))
+
               setAddressBook(false)
 
               setSender({
@@ -292,7 +292,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
 
       <SearchAddressModal
         isOpen={searchAddress}
-        countryCode={'SG'}
+        countryCode={'KR'}
         setIsOpen={(value) => setSearchAddress(value)}
       />
     </>

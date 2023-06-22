@@ -99,5 +99,6 @@
   "no_input_address_en": "Please input the address in English. ",
   "no_input_tel": "Please input the mobile number. ",
   "english_address": "Address in English",
-  "keyword_search": "If you enter a search keyword,\nthe search results are displayed."
+  "keyword_search": "If you enter a search keyword,\nthe search results are displayed.",
+  "no_result_address": "No search results.\nPlease check and enter your keyword again."
 }

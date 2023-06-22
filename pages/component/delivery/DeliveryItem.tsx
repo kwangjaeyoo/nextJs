@@ -1,9 +1,10 @@
 import { t } from 'i18next'
 import React, { MouseEvent, useState } from 'react'
-import Select, { StylesConfig } from 'react-select'
+import Select from 'react-select'
+
+import { colourStyles } from '@/util/SelectStyle'
 
 import InputBox from '../InputBox'
-import { colourStyles } from '@/util/SelectStyle'
 import PurpleDot from '../PurpleDot'
 
 interface DeliveryItemProps {
