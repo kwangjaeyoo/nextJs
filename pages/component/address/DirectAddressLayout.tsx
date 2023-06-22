@@ -1,26 +1,25 @@
 import { t } from 'i18next'
-import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import InputBox from '../InputBox'
-import TopLayout from '../TopLayout'
 
-const EnterAddressScreen = () => {
-  const router = useRouter()
+interface DirectAddressLayoutProps {
+  selectAddress: (item: any) => void
+}
 
+const DirectAddressLayout: React.FC<DirectAddressLayoutProps> = ({
+  selectAddress,
+}) => {
   const [engLayoutVisible, setEngLayoutVisible] = useState(true)
 
   // TODO englist 사용하는 것인지 아닌지 필요.. SG ,US 아니면 영어 보여 지도록
 
+  const save = () => {
+    selectAddress('TODO')
+  }
+
   return (
     <>
-      <TopLayout
-        title={t('address_input')}
-        titleColor="text-[#ffffff]"
-        backColor="bg-[#5D32B0]"
-        showLeftBtn
-        onLeftPress={router.back}
-      />
       <div className="p-5">
         <>
           {t('address')} ({t('local_language')})
@@ -64,4 +63,4 @@ const EnterAddressScreen = () => {
   )
 }
 
-export default EnterAddressScreen
+export default DirectAddressLayout

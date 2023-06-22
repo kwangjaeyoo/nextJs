@@ -1,6 +1,6 @@
 import { t } from 'i18next'
 import { useRouter } from 'next/router'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Select from 'react-select'
 
 import { colourStyles } from '@/util/SelectStyle'
@@ -11,6 +11,7 @@ import FullModal from '../modal/FullModal'
 import Modal from '../modal/Modal'
 import PurpleDot from '../PurpleDot'
 import { IaddressModel, InationModel } from './RegistDeliveryScreen'
+import SearchAddressModal from '../address/SearchAddressModal'
 
 const inputTypeList = [
   { value: 'direct', label: t('direct_input') },
@@ -30,7 +31,6 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
   nextClick,
   prevClick,
 }) => {
-  const router = useRouter()
   const didMount = useRef(false)
 
   const [sender, setSender] = useState(senderModel)
@@ -38,6 +38,8 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
   const [showEnglishAddress] = useState(
     nationModel.search_fromCode === nationModel.search_toCode,
   )
+
+  const [searchAddress, setSearchAddress] = useState(false)
 
   const [showModal, setShowModal] = useState({ content: '', btn: '' })
 
@@ -162,12 +164,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
               justify-center
               text-white
               "
-            onClick={() => {
-              // router.push({
-              //   pathname: '/address',
-              // })
-              // TODO 갔다 왔을 때 처리 필요...
-            }}
+            onClick={() => setSearchAddress(true)}
           >
             {t('search')}
           </div>
@@ -291,6 +288,12 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
             }}
           />
         }
+      />
+
+      <SearchAddressModal
+        isOpen={searchAddress}
+        countryCode={'SG'}
+        setIsOpen={(value) => setSearchAddress(value)}
       />
     </>
   )

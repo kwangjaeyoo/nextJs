@@ -33,7 +33,7 @@ export interface IaddressModel {
 const RegistDeliveryScreen = () => {
   const router = useRouter()
 
-  const [position, setPosition] = useState(1)
+  const [position, setPosition] = useState(2)
 
   const nationModel = useRef<InationModel>({
     search_from: '',

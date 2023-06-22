@@ -7,14 +7,17 @@ const LoadingModal = () => {
     <>
       {loadingModal.isOpen > 0 && (
         <div
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(0px, -50%)',
-          }}
+          className="
+            absolute 
+            top-1/2 
+            left-1/2 
+            transform 
+            -translate-x-1/2 
+            -translate-y-1/2
+            z-50
+          "
         >
-          <div>Loading</div>
+          <div className="text-[#ff0000]">TODO Loading</div>
         </div>
       )}
     </>

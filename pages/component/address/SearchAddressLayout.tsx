@@ -1,24 +1,22 @@
 import { t } from 'i18next'
-import { useRouter } from 'next/router'
+import Image from 'next/image'
 import { useState } from 'react'
 
-import TopLayout from '../TopLayout'
-import Image from 'next/image'
+import { SHOW_TYPE } from './SearchAddressModal'
 
-const SearchAddressScreen = () => {
-  const router = useRouter()
+interface SearchAddressLayoutProps {
+  countryCode: string
+  selectType: (type: SHOW_TYPE) => void
+}
+
+const SearchAddressLayout: React.FC<SearchAddressLayoutProps> = ({
+  countryCode,
+  selectType,
+}) => {
   const [keywordClick, setKeywordClick] = useState(true)
 
   return (
     <>
-      <TopLayout
-        title={t('search_address')}
-        titleColor="text-[#ffffff]"
-        backColor="bg-[#5D32B0]"
-        showLeftBtn
-        onLeftPress={router.back}
-      />
-
       <div
         className="
           flex 
@@ -56,8 +54,9 @@ const SearchAddressScreen = () => {
           {t('search_by_keyword_zipcode')}
         </div>
 
-        <div
-          className={`
+        {countryCode !== 'SG' && (
+          <div
+            className={`
             flex
             flex-row
             bg-[#ffffff] 
@@ -68,17 +67,18 @@ const SearchAddressScreen = () => {
             items-center
             ${!keywordClick && 'border border-[#5D32B0]'}
           `}
-          onClick={() => setKeywordClick(false)}
-        >
-          <Image
-            src={!keywordClick ? '/big-on.png' : '/big-off.png'}
-            width={20}
-            height={20}
-            alt="check_image"
-            className="mr-3"
-          />
-          {t('address_division')}
-        </div>
+            onClick={() => setKeywordClick(false)}
+          >
+            <Image
+              src={!keywordClick ? '/big-on.png' : '/big-off.png'}
+              width={20}
+              height={20}
+              alt="check_image"
+              className="mr-3"
+            />
+            {t('address_division')}
+          </div>
+        )}
       </div>
 
       <div className="ml-10 mr-10 mt-10">
@@ -94,8 +94,9 @@ const SearchAddressScreen = () => {
             rounded-xl"
           onClick={() => {
             if (keywordClick) {
-              router.push('/component/address/ZipcodeSearchScreen')
+              selectType(SHOW_TYPE.keyword)
             } else {
+              selectType(SHOW_TYPE.street)
             }
           }}
         >
@@ -115,10 +116,7 @@ const SearchAddressScreen = () => {
             text-[#5D32B0]
             p-4
             rounded-xl"
-          onClick={() => {
-            router.push('/component/address/EnterAddressScreen')
-            console.log('TODO')
-          }}
+          onClick={() => selectType(SHOW_TYPE.direct)}
         >
           {t('address_direct')}
         </div>
@@ -127,4 +125,4 @@ const SearchAddressScreen = () => {
   )
 }
 
-export default SearchAddressScreen
+export default SearchAddressLayout
