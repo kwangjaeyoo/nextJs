@@ -7,8 +7,8 @@ import { convertDateformat } from '@/util/Util'
 
 import CustomCalendar from '../calendar/CustomCalendar'
 import InputBox from '../InputBox'
-import PurpleDot from '../PurpleDot'
 import Modal from '../modal/Modal'
+import PurpleDot from '../PurpleDot'
 
 const RegistStep5 = () => {
   const customModal = useCustomModal()
@@ -198,7 +198,6 @@ const RegistStep5 = () => {
             rounded-xl"
           onClick={() => {
             console.log('TODO ')
-            customModal.onOpen('TODO TODO', 'TODO')
           }}
         >
           {isRegistryOrder ? t('text_signup') : t('search_estimated_costs')}

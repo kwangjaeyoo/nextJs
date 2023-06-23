@@ -1,9 +1,11 @@
 import { t } from 'i18next'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import DeliveryItem from './DeliveryItem'
-import FullModal from '../modal/FullModal'
+import useCustomModal from '@/pages/hook/useCustomModal'
+
 import ItemListLayout from '../item/ItemListLayout'
+import FullModal from '../modal/FullModal'
+import DeliveryItem from './DeliveryItem'
 
 interface RegistStep4Props {
   nextClick: () => void
@@ -11,10 +13,22 @@ interface RegistStep4Props {
 }
 
 const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
+  const didMount = useRef(false)
+
+  const customModal = useCustomModal()
+
   const [addPopup, setAddPopup] = useState(false)
   const [itemDataList, setItemDataList] = useState<any[]>([])
 
   const [itemModal, setItemModal] = useState(true)
+
+  useEffect(() => {
+    if (didMount.current) {
+      console.log('RegistStep4')
+    } else {
+      didMount.current = true
+    }
+  }, [])
 
   return (
     <div className="m-8 relative">
@@ -39,7 +53,7 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
             if (itemDataList.length < 4) {
               setAddPopup(!addPopup)
             } else {
-              // TODO 다찾음....팝업..
+              customModal.onOpen(t('msg_allow_total_4_items'))
             }
           }}
         >

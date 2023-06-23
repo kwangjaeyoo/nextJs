@@ -183,7 +183,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
               {t('english_address')}
             </div>
             <div className="mb-3">
-              <InputBox placeholder="" disable value={sender.frontAddressEn} />
+              <InputBox disable value={sender.frontAddressEn} />
             </div>
             <InputBox
               value={sender.backAddress}
@@ -283,7 +283,16 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
         isOpen={searchAddress}
         countryCode={'KR'}
         setIsOpen={(value) => setSearchAddress(value)}
-        setAddress={(value) => console.log('TODO' + JSON.stringify(value))}
+        setAddress={(value) => {
+          setSender({
+            ...sender,
+            zipCode: value.zipCode,
+            frontAddress: value.frontAddress,
+            backAddress: value.backAddress,
+            frontAddressEn: value.frontAddressEn,
+            backAddressEn: value.backAddressEn,
+          })
+        }}
       />
     </>
   )

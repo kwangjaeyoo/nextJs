@@ -2,8 +2,9 @@ import axios from 'axios'
 import { t } from 'i18next'
 import { useEffect, useRef, useState } from 'react'
 
-import ItemView from './ItemView'
 import useLoadingModal from '@/pages/hook/useLoadingModal'
+
+import ItemView from './ItemView'
 
 const ItemListLayout = () => {
   const didMount = useRef(false)
