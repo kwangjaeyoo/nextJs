@@ -3,16 +3,16 @@
 interface ButtonProps {
   label: string
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
+  bgColor?: string
   disable?: boolean
-  outline?: boolean
   small?: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({
   label,
   onClick,
+  bgColor = 'bg-[#7340BF]',
   disable,
-  outline,
   small,
 }) => {
   return (
@@ -27,9 +27,8 @@ const Button: React.FC<ButtonProps> = ({
         hover:opacity-80
         transition
         w-full
-        ${outline ? 'bg-white' : 'bg-[#7340BF]'}
-        ${outline ? 'border-black' : 'bg-[#7340BF]'}
-        ${outline ? 'text-black' : 'text-white'}
+        ${bgColor}
+        text-white
         ${small ? 'text-sm' : 'text-md'}
         ${small ? 'py-1' : 'py-3'}
         ${small ? 'font-light' : 'font-semibold'}

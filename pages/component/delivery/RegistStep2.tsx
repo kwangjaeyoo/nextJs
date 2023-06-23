@@ -10,6 +10,7 @@ import SearchAddressModal from '../address/SearchAddressModal'
 import InputBox from '../InputBox'
 import FullModal from '../modal/FullModal'
 import PurpleDot from '../PurpleDot'
+import RegiBottomLayout from './RegiBottomLayout'
 import { IaddressModel, InationModel } from './RegistDeliveryScreen'
 
 const inputTypeList = [
@@ -215,39 +216,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
         />
       </div>
 
-      <div className="flex flex-row h-14 mt-10 ml-8 mr-8 mb-10">
-        <div
-          className=" 
-            flex 
-            w-1/2
-            mr-1
-            items-center
-            justify-center
-            bg-[#f4f4f4]
-            text-[#939393]
-            font-semibold
-            rounded-xl
-            shadow-lg"
-          onClick={prevClick}
-        >
-          {t('text_prev')}
-        </div>
-        <div
-          className=" 
-            flex
-            w-1/2
-            ml-1
-            items-center
-            justify-center
-            bg-[#7340BF]
-            text-white
-            font-semibold
-            rounded-xl"
-          onClick={checkSenderModel}
-        >
-          {t('text_next')}
-        </div>
-      </div>
+      <RegiBottomLayout nextClick={checkSenderModel} prevClick={prevClick} />
 
       <FullModal
         isOpen={addressBook}

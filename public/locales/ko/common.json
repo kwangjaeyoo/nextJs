@@ -104,5 +104,12 @@
   "no_result_address": "검색 결과가 없습니다.\n다시 입력해 주세요.",
   "select_state": "주(도) 선택",
   "select_street": "거리(도로명) 선택",
-  "select_city": "도시(구) 선택"
+  "select_city": "도시(구) 선택",
+  "no_item_info": "추가된 아이템 정보가 없습니다.",
+  "no_item_count": "아이템의 갯수를 입력해주세요. ",
+  "no_item_currency": "상품 금액의 통화를 선택해주세요. ",
+  "no_item_name": "상품명을 입력해주세요.",
+  "no_item_price": "상품 가격을 입력해주세요.",
+  "no_item_url": "상품 URL 또는 이미지를 추가해주세요.",
+  "no_item_weight": "상품의 무게 정보를 입력해주세요."
 }

@@ -9,6 +9,8 @@ import TopLayout from '../TopLayout'
 const RegistItemScreen = () => {
   const router = useRouter()
 
+  // TODO
+
   const [basicInfoOpen, setBasicInfoOpen] = useState(true)
   const [itemCodeOpen, setItemCodeOpen] = useState(false)
   const [productOpen, setProductOpen] = useState(false)
@@ -33,7 +35,7 @@ const RegistItemScreen = () => {
               <PurpleDot />
             </div>
 
-            <div>TODO</div>
+            <div>aaaa</div>
           </div>
 
           {basicInfoOpen && (
@@ -45,23 +47,23 @@ const RegistItemScreen = () => {
                 <InputBox placeholder={t('item_code_msg')!!} disable />
 
                 <div className="mt-4 mb-2">{t('item_detail_category')}</div>
-                <InputBox placeholder="TODO" />
+                <InputBox />
 
                 <div className="mt-4 mb-2 flex flex-row">
                   <div className="">{t('item_name')}</div>
                   <PurpleDot />
                 </div>
-                <InputBox placeholder="TODO" />
+                <InputBox />
 
                 <div className="mt-4 mb-2">{t('item_option')}</div>
-                <InputBox placeholder="TODO" />
+                <InputBox />
 
                 <div className="mt-4 mb-2">{t('item_price')}</div>
                 <div className="flex flex-row">
                   <div className=" w-1/2 mr-2 rounded border border-[#dbdbdb]">
-                    TODO selecter
+                    aaaa selecter
                   </div>
-                  <InputBox placeholder="TODO" />
+                  <InputBox />
                 </div>
               </div>
             </div>
@@ -74,7 +76,7 @@ const RegistItemScreen = () => {
             onClick={() => setItemCodeOpen(!itemCodeOpen)}
           >
             <>{t('manage_item_code')}</>
-            <div>TODO</div>
+            <div>aaaa</div>
           </div>
 
           {itemCodeOpen && (
@@ -83,10 +85,10 @@ const RegistItemScreen = () => {
 
               <div className="p-4 flex flex-col">
                 <div className="mb-2">{t('register_barcode')}</div>
-                <InputBox placeholder="TODO" />
+                <InputBox />
 
                 <div className="mt-4 mb-2">{t('user_define_item_code')}</div>
-                <InputBox placeholder="TODO" />
+                <InputBox />
 
                 <div className="mt-2 text-[#939393]">
                   {t('msg_user_define_item_code')}
@@ -106,7 +108,7 @@ const RegistItemScreen = () => {
               <PurpleDot />
             </div>
 
-            <div>TODO</div>
+            <div>aaaa</div>
           </div>
 
           {productOpen && (
@@ -114,15 +116,15 @@ const RegistItemScreen = () => {
               <div className="h-0.5 bg-[#f4f4f4] ml-2 mr-2" />
 
               <div className="p-4 flex flex-col">
-                <>TODO Image</>
+                <>aaaa Image</>
                 <div className="mb-2">{t('brand')}</div>
-                <InputBox placeholder="TODO" />
+                <InputBox />
 
                 <div className="mt-4 mb-2">{t('metarial')}</div>
-                <InputBox placeholder="TODO" />
+                <InputBox />
 
                 <div className="mt-4 mb-2">{t('origin')}</div>
-                <InputBox placeholder="TODO" />
+                <InputBox />
 
                 <div className="mt-2 text-[#939393]">{t('origin_msg')}</div>
 
@@ -132,7 +134,7 @@ const RegistItemScreen = () => {
                     <PurpleDot />
                   </div>
                 </div>
-                <InputBox placeholder="TODO" />
+                <InputBox />
 
                 <div className="mt-2 text-[#939393]">{t('msg_url')}</div>
               </div>
@@ -146,7 +148,7 @@ const RegistItemScreen = () => {
             onClick={() => setCustomsInfoOpen(!customsInfoOpen)}
           >
             <>{t('customs_info')}</>
-            <div>TODO</div>
+            <div>aaaa</div>
           </div>
 
           {customsInfoOpen && (
@@ -157,13 +159,13 @@ const RegistItemScreen = () => {
                 <div className="mb-2">{t('oversea_trade_code')}</div>
                 <div className="flex flex-row">
                   <div className=" w-1/2 mr-2 rounded border border-[#dbdbdb]">
-                    TODO selecter
+                    aaaa selecter
                   </div>
-                  <InputBox placeholder="TODO" />
+                  <InputBox />
                 </div>
 
                 <div className="mt-4 mb-2">{t('postal_tax')}</div>
-                <InputBox placeholder="TODO" />
+                <InputBox />
               </div>
             </div>
           )}
@@ -182,7 +184,7 @@ const RegistItemScreen = () => {
             mt-5
             text-white
             "
-          onClick={() => console.log('TODO')}
+          onClick={() => console.log('aaaa')}
         >
           {t('register_item')}
         </div>

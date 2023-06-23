@@ -103,5 +103,12 @@
   "no_result_address": "No search results.\nPlease check and enter your keyword again.",
   "select_state": "Select State",
   "select_street": "Select street",
-  "select_city": "Select City"
+  "select_city": "Select City",
+  "no_item_info": "There is no item data to add. ",
+  "no_item_count": "Please input the Item Qty. ",
+  "no_item_currency": "Please select the currency of item price. ",
+  "no_item_name": "Please input the item name.",
+  "no_item_price": "Please input the item price.",
+  "no_item_url": "Please input the item URL or upload the image. ",
+  "no_item_weight": "Please input the total weight of items."
 }

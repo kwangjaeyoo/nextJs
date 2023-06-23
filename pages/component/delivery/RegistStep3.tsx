@@ -1,11 +1,13 @@
 import { t } from 'i18next'
 import { useEffect, useRef, useState } from 'react'
 
+import useCustomModal from '@/pages/hook/useCustomModal'
+
 import SearchAddressModal from '../address/SearchAddressModal'
 import InputBox from '../InputBox'
 import PurpleDot from '../PurpleDot'
+import RegiBottomLayout from './RegiBottomLayout'
 import { IaddressModel, InationModel } from './RegistDeliveryScreen'
-import useCustomModal from '@/pages/hook/useCustomModal'
 
 interface RegistStep3Props {
   nationModel: InationModel
@@ -173,39 +175,7 @@ const RegistStep3: React.FC<RegistStep3Props> = ({
         />
       </div>
 
-      <div className="flex flex-row mt-10 h-14 ml-8 mr-8">
-        <div
-          className=" 
-            flex 
-            w-1/2
-            mr-1
-            items-center
-            justify-center
-            bg-[#f4f4f4]
-            text-[#939393]
-            font-semibold
-            rounded-xl
-            shadow-lg"
-          onClick={prevClick}
-        >
-          {t('text_prev')}
-        </div>
-        <div
-          className=" 
-            flex
-            w-1/2
-            ml-1
-            items-center
-            justify-center
-            bg-[#7340BF]
-            text-white
-            font-semibold
-            rounded-xl"
-          onClick={checkReciptModel}
-        >
-          {t('text_next')}
-        </div>
-      </div>
+      <RegiBottomLayout nextClick={checkReciptModel} prevClick={prevClick} />
 
       <SearchAddressModal
         isOpen={searchAddress}

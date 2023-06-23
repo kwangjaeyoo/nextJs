@@ -32,14 +32,8 @@ const Navbar = () => {
     }
   }
 
-  // useEffect(() => {
-  //   console.log()
-  //   itemClick(activeItem)
-  // })
-
   let mode = process.env.NODE_ENV
 
-  //className="w-full"
   return (
     <>
       {showMenu && (

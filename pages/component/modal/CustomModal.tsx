@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import useCustomModal from '@/pages/hook/useCustomModal'
 
 import Button from '../Button'
+import { t } from 'i18next'
 
 const CustomModal = () => {
   const didMount = useRef(false)
@@ -20,6 +21,9 @@ const CustomModal = () => {
   }, [modalData])
 
   const handleSubmit = useCallback(() => {
+    if (modalData.obj.btnObject.btnClick) {
+      modalData.obj.btnObject.btnClick()
+    }
     modalData.onClose()
   }, [modalData])
 
@@ -107,7 +111,11 @@ const CustomModal = () => {
                   w-full
                 "
               >
-                <Button label={modalData.obj.btnText} onClick={handleSubmit} />
+                <Button
+                  label={modalData.obj.btnObject.btnText}
+                  bgColor={modalData.obj.btnObject.btnBgColor}
+                  onClick={handleSubmit}
+                />
               </div>
             </div>
           </div>

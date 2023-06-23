@@ -1,4 +1,5 @@
 import { t } from 'i18next'
+import { useRouter } from 'next/router'
 import { useRef, useState } from 'react'
 
 import TopLayout from '../TopLayout'
@@ -9,7 +10,6 @@ import RegistStep3 from './RegistStep3'
 import RegistStep4 from './RegistStep4'
 import RegistStep5 from './RegistStep5'
 import RegistStep6 from './RegistStep6'
-import { useRouter } from 'next/router'
 
 export interface InationModel {
   search_from: string
@@ -33,7 +33,7 @@ export interface IaddressModel {
 const RegistDeliveryScreen = () => {
   const router = useRouter()
 
-  const [position, setPosition] = useState(3)
+  const [position, setPosition] = useState(4)
 
   const nationModel = useRef<InationModel>({
     search_from: '',

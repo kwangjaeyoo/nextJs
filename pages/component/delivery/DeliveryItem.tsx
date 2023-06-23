@@ -1,5 +1,5 @@
 import { t } from 'i18next'
-import React, { MouseEvent, useState } from 'react'
+import React, { MouseEvent, useEffect, useState } from 'react'
 import Select from 'react-select'
 
 import { colourStyles } from '@/util/SelectStyle'
@@ -11,26 +11,34 @@ interface DeliveryItemProps {
   index: number
   item: any
   deleteItem: (index: number) => void
+  onChange: (value: any) => void
 }
 
 const currencyList = [
   { value: 'SG', label: 'TODO' },
-  { value: 'KR', label: 'TODO Korea' },
-  { value: 'MY', label: 'TODO' },
+  { value: 'KR', label: 'Korea' },
+  { value: 'MY', label: '111' },
 ]
 
 const DeliveryItem: React.FC<DeliveryItemProps> = ({
   index,
   item,
   deleteItem,
+  onChange,
 }) => {
   const [open, setOpen] = useState(true)
 
+  const [itemData, setItemData] = useState(item)
+
   const handleDeleteClick = (event: MouseEvent<HTMLDivElement>) => {
-    console.log('del ' + index)
     deleteItem(index)
     event.stopPropagation()
   }
+
+  useEffect(() => {
+    onChange(itemData)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemData])
 
   return (
     <div
@@ -64,13 +72,28 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
             <div className="font-semi-bold text-[14px]">{t('item_name')}</div>
             <PurpleDot />
           </div>
-          <InputBox />
+          <InputBox
+            value={itemData.name}
+            onChange={(value) => {
+              setItemData((prevItemData: any) => ({
+                ...prevItemData,
+                name: value,
+              }))
+            }}
+          />
 
           <div className="flex mt-5 mb-3">
             <div className="font-semi-bold text-[14px]">{t('item_count')}</div>
             <PurpleDot />
           </div>
-          <InputBox />
+          <InputBox
+            value={itemData.count}
+            onChange={(value) => {
+              // if (value == '' || !isNaN(parseInt(value))) {
+              //   setItemData({ ...itemData, count: value })
+              // }
+            }}
+          />
 
           <div className="flex mt-5 mb-3">
             <div className="font-semi-bold text-[14px]">{t('item_price')}</div>
@@ -99,7 +122,12 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
           <div className="text-[13px]">{t('msg_required_url_or_image')}</div>
           <div className="flex mt-3 mb-3">{t('url')}</div>
 
-          <InputBox />
+          <InputBox
+            value="TODO"
+            onChange={(value) => {
+              console.log('TODO')
+            }}
+          />
 
           <div className="flex mt-3 mb-3">{t('item_image')}</div>
           <div className="flex flex-row">
@@ -108,7 +136,7 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
           </div>
         </>
       ) : (
-        <div className="mt-4 mb-2">close TODO</div>
+        <div className="mt-4 mb-2">close layout TODO </div>
       )}
     </div>
   )

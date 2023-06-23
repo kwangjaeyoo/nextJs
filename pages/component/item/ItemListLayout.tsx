@@ -6,7 +6,11 @@ import useLoadingModal from '@/pages/hook/useLoadingModal'
 
 import ItemView from './ItemView'
 
-const ItemListLayout = () => {
+interface ItemListLayoutProps {
+  selectItem: (item: any) => void
+}
+
+const ItemListLayout: React.FC<ItemListLayoutProps> = ({ selectItem }) => {
   const didMount = useRef(false)
   const loadingModal = useLoadingModal()
 
@@ -25,6 +29,7 @@ const ItemListLayout = () => {
     loadingModal.onOpen()
 
     try {
+      // TODO https://nextjs.org/docs/messages/api-routes-response-size-limit
       const result = await axios.post('/api/callItemAPI', {
         apiName: 'GetItemList',
         param: {},
@@ -83,7 +88,7 @@ const ItemListLayout = () => {
 
       {itemClickedIndex > -1 && (
         <div
-          onClick={() => console.log('TODO')}
+          onClick={() => selectItem(itemList[itemClickedIndex])}
           className="
             flex
             items-center
