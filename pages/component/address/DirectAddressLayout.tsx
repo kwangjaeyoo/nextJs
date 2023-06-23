@@ -64,7 +64,7 @@ const DirectAddressLayout: React.FC<DirectAddressLayoutProps> = ({
         </>
         <div className="mt-2" />
         <InputBox
-          placeholder={t('zipcode')}
+          placeholder={t('zipcode')!!}
           value={address.zipCode}
           onChange={(value) => {
             if (value && !isNaN(parseInt(value))) {
@@ -74,13 +74,13 @@ const DirectAddressLayout: React.FC<DirectAddressLayoutProps> = ({
         />
         <div className="mt-3" />
         <InputBox
-          placeholder={t('default_addr')}
+          placeholder={t('default_addr')!!}
           value={address.frontAddress}
           onChange={(value) => setAddress({ ...address, frontAddress: value })}
         />
         <div className="mt-3" />
         <InputBox
-          placeholder={t('detail_addr')}
+          placeholder={t('detail_addr')!!}
           value={address.backAddress}
           onChange={(value) => setAddress({ ...address, backAddress: value })}
         />
@@ -92,7 +92,7 @@ const DirectAddressLayout: React.FC<DirectAddressLayoutProps> = ({
             </div>
             <div className="mt-3" />
             <InputBox
-              placeholder={t('default_addr')}
+              placeholder={t('default_addr')!!}
               value={address.frontAddressEn}
               onChange={(value) =>
                 setAddress({ ...address, frontAddressEn: value })
@@ -100,7 +100,7 @@ const DirectAddressLayout: React.FC<DirectAddressLayoutProps> = ({
             />
             <div className="mt-3" />
             <InputBox
-              placeholder={t('detail_addr')}
+              placeholder={t('detail_addr')!!}
               value={address.backAddressEn}
               onChange={(value) =>
                 setAddress({ ...address, backAddressEn: value })

@@ -3,6 +3,7 @@ import { t } from 'i18next'
 import InputBox from '../InputBox'
 import PurpleDot from '../PurpleDot'
 import { IaddressModel, InationModel } from './RegistDeliveryScreen'
+import { useEffect, useRef, useState } from 'react'
 
 interface RegistStep3Props {
   nationModel: InationModel
@@ -17,6 +18,18 @@ const RegistStep3: React.FC<RegistStep3Props> = ({
   nextClick,
   prevClick,
 }) => {
+  const didMount = useRef(false)
+
+  const [recipModel, setRecipModel] = useState(recipientModel)
+
+  useEffect(() => {
+    if (didMount.current) {
+      console.log('RegistStep3')
+    } else {
+      didMount.current = true
+    }
+  }, [])
+
   return (
     <>
       <div className="ml-8 font-semi-bold text-[16px]">{t('text_sender')}</div>
@@ -35,13 +48,16 @@ const RegistStep3: React.FC<RegistStep3Props> = ({
         <div className="font-semi-bold text-[16px] mb-3">
           {t('origin_country')}
         </div>
-        <InputBox placeholder="TODO" disable />
+        <InputBox value={nationModel.search_to} disable />
 
         <div className="flex mt-5 mb-3">
           <div className="font-semi-bold text-[16px]">{t('name')}</div>
           <PurpleDot />
         </div>
-        <InputBox placeholder="" />
+        <InputBox
+          value={recipModel.name}
+          onChange={(value) => setRecipModel({ ...recipModel, name: value })}
+        />
 
         <div className="flex mt-5 mb-3">
           <div className="font-semi-bold text-[16px]">{t('address')}</div>
@@ -49,7 +65,7 @@ const RegistStep3: React.FC<RegistStep3Props> = ({
         </div>
 
         <div className="flex flex-row mb-3">
-          <InputBox placeholder="" disable />
+          <InputBox disable />
           <div
             className="
               w-32
@@ -61,20 +77,19 @@ const RegistStep3: React.FC<RegistStep3Props> = ({
               justify-center
               text-white
               "
-            onClick={
-              () => {}
-              // TODO 갔다 왔을 때 처리 필요...
-            }
+            onClick={() => {
+              console.log('TODO')
+            }}
           >
             {t('search')}
           </div>
         </div>
 
         <div className="mb-3">
-          <InputBox placeholder="" disable />
+          <InputBox disable />
         </div>
         <InputBox
-          placeholder={t('please_check_address_detail_input')}
+          placeholder={t('please_check_address_detail_input')!!}
           onChange={(value) => console.log(value)}
         />
 
@@ -86,38 +101,41 @@ const RegistStep3: React.FC<RegistStep3Props> = ({
           </div>
           <PurpleDot />
         </div>
-        <InputBox placeholder="" onChange={(value) => console.log(value)} />
+        <InputBox
+          value={recipModel.telNo}
+          onChange={(value) => setRecipModel({ ...recipModel, telNo: value })}
+        />
       </div>
 
       <div className="flex flex-row mt-10 h-14 ml-8 mr-8">
         <div
           className=" 
-              flex 
-              w-1/2
-              mr-1
-              items-center
-              justify-center
-              bg-[#f4f4f4]
-              text-[#939393]
-              font-semibold
-              rounded-xl
-              shadow-lg"
+            flex 
+            w-1/2
+            mr-1
+            items-center
+            justify-center
+            bg-[#f4f4f4]
+            text-[#939393]
+            font-semibold
+            rounded-xl
+            shadow-lg"
           onClick={prevClick}
         >
           {t('text_prev')}
         </div>
         <div
           className=" 
-              flex
-              w-1/2
-              ml-1
-              items-center
-              justify-center
-              bg-[#7340BF]
-              text-white
-              font-semibold
-              rounded-xl"
-          onClick={() => console.log('TODO ')}
+            flex
+            w-1/2
+            ml-1
+            items-center
+            justify-center
+            bg-[#7340BF]
+            text-white
+            font-semibold
+            rounded-xl"
+          onClick={() => console.log('TODO')}
         >
           {t('text_next')}
         </div>

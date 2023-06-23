@@ -64,13 +64,13 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
             <div className="font-semi-bold text-[14px]">{t('item_name')}</div>
             <PurpleDot />
           </div>
-          <InputBox placeholder="" />
+          <InputBox />
 
           <div className="flex mt-5 mb-3">
             <div className="font-semi-bold text-[14px]">{t('item_count')}</div>
             <PurpleDot />
           </div>
-          <InputBox placeholder="" />
+          <InputBox />
 
           <div className="flex mt-5 mb-3">
             <div className="font-semi-bold text-[14px]">{t('item_price')}</div>
@@ -87,7 +87,7 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
               />
             </div>
             <div className="flew w-1/2 ml-1">
-              <InputBox placeholder="" />
+              <InputBox />
             </div>
           </div>
 
@@ -99,7 +99,7 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
           <div className="text-[13px]">{t('msg_required_url_or_image')}</div>
           <div className="flex mt-3 mb-3">{t('url')}</div>
 
-          <InputBox placeholder="" />
+          <InputBox />
 
           <div className="flex mt-3 mb-3">{t('item_image')}</div>
           <div className="flex flex-row">

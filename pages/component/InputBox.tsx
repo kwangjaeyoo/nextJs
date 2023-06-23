@@ -2,7 +2,7 @@ import { HTMLInputTypeAttribute } from 'react'
 
 interface InputBoxProp {
   value?: string
-  placeholder: string
+  placeholder?: string
   disable?: boolean
   type?: HTMLInputTypeAttribute
   onChange?: (value: string) => void
@@ -10,7 +10,7 @@ interface InputBoxProp {
 
 const InputBox: React.FC<InputBoxProp> = ({
   value = '',
-  placeholder,
+  placeholder = '',
   disable,
   type = 'string',
   onChange,

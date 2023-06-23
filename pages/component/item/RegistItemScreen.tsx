@@ -42,7 +42,7 @@ const RegistItemScreen = () => {
 
               <div className="p-4 flex flex-col">
                 <div className="mb-2">{t('item_code')}</div>
-                <InputBox placeholder={t('item_code_msg')} disable />
+                <InputBox placeholder={t('item_code_msg')!!} disable />
 
                 <div className="mt-4 mb-2">{t('item_detail_category')}</div>
                 <InputBox placeholder="TODO" />

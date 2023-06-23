@@ -141,7 +141,6 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
         </div>
         <InputBox
           value={sender.name}
-          placeholder=""
           onChange={(value) => setSender({ ...sender, name: value })}
         />
 
@@ -151,7 +150,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
         </div>
 
         <div className="flex flex-row mb-3">
-          <InputBox value={sender.zipCode} placeholder="" disable />
+          <InputBox value={sender.zipCode} disable />
           <div
             className="
               w-32
@@ -170,11 +169,11 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
         </div>
 
         <div className="mb-3">
-          <InputBox placeholder="" disable value={sender.frontAddress} />
+          <InputBox disable value={sender.frontAddress} />
         </div>
         <InputBox
           value={sender.backAddress}
-          placeholder={t('please_check_address_detail_input')}
+          placeholder={t('please_check_address_detail_input')!!}
           onChange={(value) => setSender({ ...sender, backAddress: value })}
         />
 
@@ -188,7 +187,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
             </div>
             <InputBox
               value={sender.backAddress}
-              placeholder={t('please_check_address_detail_input')}
+              placeholder={t('please_check_address_detail_input')!!}
               onChange={(value) =>
                 setSender({ ...sender, backAddressEn: value })
               }
@@ -204,7 +203,6 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
         </div>
         <InputBox
           value={sender.telNo}
-          placeholder=""
           onChange={(value) => setSender({ ...sender, telNo: value })}
         />
 
@@ -213,7 +211,6 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
         </div>
         <InputBox
           value={sender.email}
-          placeholder=""
           onChange={(value) => setSender({ ...sender, email: value })}
         />
       </div>
