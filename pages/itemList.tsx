@@ -1,7 +1,7 @@
-import ItemListScreen from './component/item/ItemListScreen'
+import ItemListLayout from './component/item/ItemListLayout'
 
 const ItemList = () => {
-  return <ItemListScreen />
+  return <ItemListLayout />
 }
 
 export default ItemList

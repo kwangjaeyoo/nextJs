@@ -2,16 +2,18 @@ import { t } from 'i18next'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
+import useCustomModal from '@/pages/hook/useCustomModal'
 import { convertDateformat } from '@/util/Util'
 
 import CustomCalendar from '../calendar/CustomCalendar'
 import InputBox from '../InputBox'
-import Modal from '../modal/Modal'
 import PurpleDot from '../PurpleDot'
+import Modal from '../modal/Modal'
 
 const RegistStep5 = () => {
+  const customModal = useCustomModal()
+
   const [isRegistryOrder, setIsRegistryOrder] = useState(false)
-  const [showModal, setShowModal] = useState({ content: '', btn: '' })
   const [calendarModalShow, setCalendarModalShow] = useState(false)
 
   const tomorrowDate = useRef<Date>(new Date())
@@ -194,7 +196,10 @@ const RegistStep5 = () => {
             text-white
             font-semibold
             rounded-xl"
-          onClick={() => console.log('TODO ')}
+          onClick={() => {
+            console.log('TODO ')
+            customModal.onOpen('TODO TODO', 'TODO')
+          }}
         >
           {isRegistryOrder ? t('text_signup') : t('search_estimated_costs')}
         </div>
@@ -217,21 +222,13 @@ const RegistStep5 = () => {
                 setPickupDate(value)
                 setCalendarModalShow(false)
               } else {
-                setShowModal({
-                  content: "Please select a date after tomorrow's date.",
-                  btn: t('ok'),
-                })
+                customModal.onOpen(
+                  "Please select a date after tomorrow's date.",
+                )
               }
             }}
           />
         }
-      />
-
-      <Modal
-        isOpen={showModal.content !== ''}
-        onSubmit={() => setShowModal({ content: '', btn: '' })}
-        title={showModal.content}
-        actionLabel={showModal.btn}
       />
     </div>
   )

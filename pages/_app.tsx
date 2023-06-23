@@ -9,11 +9,11 @@ import { initReactI18next } from 'react-i18next'
 
 import en from '../public/locales/en/common.json'
 import ko from '../public/locales/ko/common.json'
+import CustomModal from './component/modal/CustomModal'
 import LoadingModal from './component/modal/LoadingModal'
 import Layout from './layout'
 
 import type { AppProps } from 'next/app'
-
 function App({ Component, pageProps }: AppProps) {
   const [hydrated, setHydrated] = React.useState(false)
 
@@ -29,6 +29,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <LoadingModal />
+      <CustomModal />
 
       <Layout>
         <Component {...pageProps} />

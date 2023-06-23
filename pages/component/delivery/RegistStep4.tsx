@@ -1,8 +1,9 @@
 import { t } from 'i18next'
-import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import DeliveryItem from './DeliveryItem'
+import FullModal from '../modal/FullModal'
+import ItemListLayout from '../item/ItemListLayout'
 
 interface RegistStep4Props {
   nextClick: () => void
@@ -10,10 +11,10 @@ interface RegistStep4Props {
 }
 
 const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
-  const router = useRouter()
-
   const [addPopup, setAddPopup] = useState(false)
   const [itemDataList, setItemDataList] = useState<any[]>([])
+
+  const [itemModal, setItemModal] = useState(true)
 
   return (
     <div className="m-8 relative">
@@ -57,10 +58,10 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
           <div className="absolute z-40 w-4 h-4 bg-white rotate-45 right-10 top-[4rem]" />
           <div className="absolute z-50 rounded bg-white right-0 top-[4.5rem] flex flex-col p-4">
             <div
-              className="h-10 flex items-center"
+              className="h-10 flex items-center active:bg-[#dbdbdb]"
               onClick={() => {
                 setAddPopup(false)
-                router.push('/itemList')
+                setItemModal(true)
               }}
             >
               {t('add_before_item')}
@@ -121,25 +122,32 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
 
         <div
           className={`
-              flex
-              w-1/2
-              ml-1
-              items-center
-              justify-center
-              ${
-                itemDataList.length > 0 && itemDataList.length
-                  ? 'bg-[#7340BF]'
-                  : 'bg-[#dbdbdb]'
-              }
-              text-white
-              font-semibold
-              rounded-xl
-            `}
+            flex
+            w-1/2
+            ml-1
+            items-center
+            justify-center
+            ${itemDataList.length > 0 ? 'bg-[#7340BF]' : 'bg-[#dbdbdb]'}
+            text-white
+            font-semibold
+            rounded-xl
+          `}
           onClick={() => console.log('TODO')}
         >
           {t('text_next')}
         </div>
       </div>
+
+      <FullModal
+        isOpen={itemModal}
+        title={t('international_ship_management')}
+        titleBgColor="bg-[#5D32B0]"
+        titleTextColor="text-[#ffffff]"
+        showRightBtn
+        rightBtnImage="/close-wh.png"
+        onRightPress={() => setItemModal(false)}
+        body={<ItemListLayout />}
+      />
     </div>
   )
 }

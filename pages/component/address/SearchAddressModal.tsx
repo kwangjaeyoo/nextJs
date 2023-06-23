@@ -14,12 +14,6 @@ export enum SHOW_TYPE {
   direct,
 }
 
-interface props {
-  isOpen: boolean
-  countryCode: string
-  setIsOpen: (value: boolean) => void
-}
-
 export interface addressData {
   zipCode: string
   frontAddress: string
@@ -28,10 +22,18 @@ export interface addressData {
   backAddressEn: string
 }
 
+interface props {
+  isOpen: boolean
+  countryCode: string
+  setIsOpen: (value: boolean) => void
+  setAddress: (address: addressData) => void
+}
+
 const SearchAddressModal: React.FC<props> = ({
   isOpen,
   countryCode = 'SG',
   setIsOpen,
+  setAddress,
 }) => {
   const [showBack, setShowBack] = useState(false)
 
@@ -46,6 +48,11 @@ const SearchAddressModal: React.FC<props> = ({
       setShowBack(false)
     }
   }, [showType])
+
+  const selectAddress = (address: addressData) => {
+    setIsOpen(false)
+    setAddress(address)
+  }
 
   return (
     <FullModal
@@ -74,19 +81,19 @@ const SearchAddressModal: React.FC<props> = ({
           {showType == SHOW_TYPE.keyword && (
             <ZipcodeSearchLayout
               countryCode={countryCode}
-              selectAddress={(item) => console.log(item)}
+              selectAddress={selectAddress}
             />
           )}
           {showType == SHOW_TYPE.street && (
             <StreetAddressLayout
               countryCode={countryCode}
-              selectAddress={(item) => console.log(item)}
+              selectAddress={selectAddress}
             />
           )}
           {showType == SHOW_TYPE.direct && (
             <DirectAddressLayout
               countryCode={countryCode}
-              selectAddress={(item) => console.log(item)}
+              selectAddress={selectAddress}
             />
           )}
         </div>

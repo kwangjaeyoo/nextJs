@@ -5,7 +5,7 @@ import { TfiAngleRight } from 'react-icons/tfi'
 import Select from 'react-select'
 
 import BottomModal from '@/pages/component/modal/BottomModal'
-import Modal from '@/pages/component/modal/Modal'
+import useCustomModal from '@/pages/hook/useCustomModal'
 import useLoadingModal from '@/pages/hook/useLoadingModal'
 import { colourStyles } from '@/util/SelectStyle'
 
@@ -23,11 +23,12 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
   nextClick,
 }) => {
   const didMount = useRef(false)
+
   const loadingModal = useLoadingModal()
+  const customModal = useCustomModal()
 
   const selectToNation = useRef<any>(null)
 
-  const [showModal, setShowModal] = useState({ content: '', btn: '' })
   const [showBtnModal, setShowBtnModal] = useState(false)
   const [isCheckd, setIsCheckd] = useState(false)
 
@@ -138,12 +139,12 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
 
   const checkNationSelect = () => {
     if (fromNation.nationIso === '') {
-      setShowModal({ content: t('please_select_from_nation'), btn: t('ok') })
+      customModal.onOpen(t('please_select_from_nation'))
       return false
     }
 
     if (toNation.nationIso === '') {
-      setShowModal({ content: t('please_select_nation'), btn: t('ok') })
+      customModal.onOpen(t('please_select_nation'))
       return false
     }
 
@@ -162,10 +163,7 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
     }
 
     if (!isCheckd) {
-      setShowModal({
-        content: t('please_checked_terms_conditions'),
-        btn: t('ok'),
-      })
+      customModal.onOpen(t('please_checked_terms_conditions'))
       return
     }
 
@@ -265,13 +263,6 @@ const RegistStep1: React.FC<RegistStep1Props> = ({
       >
         {t('text_next')}
       </div>
-
-      <Modal
-        isOpen={showModal.content !== ''}
-        onSubmit={() => setShowModal({ content: '', btn: '' })}
-        title={showModal.content}
-        actionLabel={showModal.btn}
-      />
 
       <BottomModal
         isOpen={showBtnModal}

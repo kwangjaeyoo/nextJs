@@ -1,17 +1,16 @@
 import { t } from 'i18next'
-import { useRouter } from 'next/router'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Select from 'react-select'
 
+import useCustomModal from '@/pages/hook/useCustomModal'
 import { colourStyles } from '@/util/SelectStyle'
 
 import AddressBookLayout from '../address/AddressBookLayout'
+import SearchAddressModal from '../address/SearchAddressModal'
 import InputBox from '../InputBox'
 import FullModal from '../modal/FullModal'
-import Modal from '../modal/Modal'
 import PurpleDot from '../PurpleDot'
 import { IaddressModel, InationModel } from './RegistDeliveryScreen'
-import SearchAddressModal from '../address/SearchAddressModal'
 
 const inputTypeList = [
   { value: 'direct', label: t('direct_input') },
@@ -33,6 +32,8 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
 }) => {
   const didMount = useRef(false)
 
+  const customModal = useCustomModal()
+
   const [sender, setSender] = useState(senderModel)
   const [addressBook, setAddressBook] = useState(false)
   const [showEnglishAddress] = useState(
@@ -40,8 +41,6 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
   )
 
   const [searchAddress, setSearchAddress] = useState(false)
-
-  const [showModal, setShowModal] = useState({ content: '', btn: '' })
 
   useEffect(() => {
     if (didMount.current) {
@@ -53,12 +52,12 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
 
   const checkSenderModel = () => {
     if (sender.name.trim().length == 0) {
-      setShowModal({ content: t('no_input_name'), btn: t('ok') })
+      customModal.onOpen(t('no_input_name'))
       return
     }
 
     if (sender.zipCode.trim().length == 0) {
-      setShowModal({ content: t('no_input_zipcode'), btn: t('ok') })
+      customModal.onOpen(t('no_input_zipcode'))
       return
     }
 
@@ -66,7 +65,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
       sender.frontAddress.trim().length == 0 ||
       sender.backAddress.trim().length == 0
     ) {
-      setShowModal({ content: t('no_input_address'), btn: t('ok') })
+      customModal.onOpen(t('no_input_address'))
       return
     }
 
@@ -75,13 +74,13 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
         sender.frontAddressEn.trim().length == 0 ||
         sender.backAddressEn.trim().length == 0
       ) {
-        setShowModal({ content: t('no_input_address_en'), btn: t('ok') })
+        customModal.onOpen(t('no_input_address_en'))
         return
       }
     }
 
     if (sender.telNo.trim().length == 0) {
-      setShowModal({ content: t('no_input_tel'), btn: t('ok') })
+      customModal.onOpen(t('no_input_tel'))
       return
     }
 
@@ -253,13 +252,6 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
         </div>
       </div>
 
-      <Modal
-        isOpen={showModal.content !== ''}
-        onSubmit={() => setShowModal({ content: '', btn: '' })}
-        title={showModal.content}
-        actionLabel={showModal.btn}
-      />
-
       <FullModal
         isOpen={addressBook}
         title={t('addressList')}
@@ -294,6 +286,7 @@ const RegistStep2: React.FC<RegistStep2Props> = ({
         isOpen={searchAddress}
         countryCode={'KR'}
         setIsOpen={(value) => setSearchAddress(value)}
+        setAddress={(value) => console.log('TODO' + JSON.stringify(value))}
       />
     </>
   )
