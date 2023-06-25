@@ -1,6 +1,6 @@
 import { t } from 'i18next'
 import { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import TopLayout from '../TopLayout'
 import RegiPosTopLayout from './RegiPosTopLayout'
@@ -31,9 +31,19 @@ export interface IaddressModel {
 }
 
 const RegistDeliveryScreen = () => {
+  const didMount = useRef(false)
+
   const router = useRouter()
 
   const [position, setPosition] = useState(4)
+
+  useEffect(() => {
+    if (didMount.current) {
+      console.log('RegistDeliveryScreen')
+    } else {
+      didMount.current = true
+    }
+  }, [])
 
   const nationModel = useRef<InationModel>({
     search_from: '',
@@ -91,6 +101,7 @@ const RegistDeliveryScreen = () => {
       <div className="flex flex-row">
         <RegiPosTopLayout pos={position} />
       </div>
+
       {position == 1 && (
         <RegistStep1
           nationModel={nationModel.current}
@@ -119,7 +130,12 @@ const RegistDeliveryScreen = () => {
           prevClick={() => setPosition(3)}
         />
       )}
-      {position == 5 && <RegistStep5 />}
+      {position == 5 && (
+        <RegistStep5
+          nextClick={() => console.log('TODO')}
+          prevClick={() => setPosition(4)}
+        />
+      )}
       {position == 6 && <RegistStep6 />}
     </div>
   )

@@ -1,8 +1,10 @@
 import { t } from 'i18next'
+import Image from 'next/image'
 import React, { MouseEvent, useEffect, useState } from 'react'
 import Select from 'react-select'
 
 import { colourStyles } from '@/util/SelectStyle'
+import { isNumericOrEmpty } from '@/util/Util'
 
 import InputBox from '../InputBox'
 import PurpleDot from '../PurpleDot'
@@ -10,25 +12,31 @@ import PurpleDot from '../PurpleDot'
 interface DeliveryItemProps {
   index: number
   item: any
+  nationLists: any[]
   deleteItem: (index: number) => void
   onChange: (value: any) => void
 }
 
-const currencyList = [
-  { value: 'SG', label: 'TODO' },
-  { value: 'KR', label: 'Korea' },
-  { value: 'MY', label: '111' },
-]
-
 const DeliveryItem: React.FC<DeliveryItemProps> = ({
   index,
   item,
+  nationLists,
   deleteItem,
   onChange,
 }) => {
   const [open, setOpen] = useState(true)
 
   const [itemData, setItemData] = useState(item)
+  const [nationlist] = useState(() => {
+    let list: { value: any; label: any }[] = []
+    nationLists.map((item) => {
+      list.push({
+        label: item.currency + ' (' + item.nation_nm + ')',
+        value: item.currency,
+      })
+    })
+    return list
+  })
 
   const handleDeleteClick = (event: MouseEvent<HTMLDivElement>) => {
     deleteItem(index)
@@ -60,7 +68,13 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
             {t('delete')}
           </div>
           <div className="w-0.5 bg-[#f4f4f4] ml-3 mr-3" />
-          <div>TODO</div>
+
+          <Image
+            src={open ? '/ic_arrow_up.png' : '/ic_arrow_down.png'}
+            alt="arrow"
+            height={30}
+            width={30}
+          />
         </div>
       </div>
 
@@ -89,9 +103,9 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
           <InputBox
             value={itemData.count}
             onChange={(value) => {
-              // if (value == '' || !isNaN(parseInt(value))) {
-              //   setItemData({ ...itemData, count: value })
-              // }
+              if (isNumericOrEmpty(value)) {
+                setItemData({ ...itemData, count: value })
+              }
             }}
           />
 
@@ -104,13 +118,20 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
               <Select
                 styles={colourStyles}
                 isSearchable={false}
-                options={currencyList}
+                options={nationlist}
                 components={{ IndicatorSeparator: () => null }}
                 onChange={() => console.log('TODO')}
               />
             </div>
             <div className="flew w-1/2 ml-1">
-              <InputBox />
+              <InputBox
+                value={itemData.price}
+                onChange={(value) => {
+                  if (isNumericOrEmpty(value)) {
+                    setItemData({ ...itemData, price: value })
+                  }
+                }}
+              />
             </div>
           </div>
 
@@ -123,7 +144,7 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
           <div className="flex mt-3 mb-3">{t('url')}</div>
 
           <InputBox
-            value="TODO"
+            value={itemData.url}
             onChange={(value) => {
               console.log('TODO')
             }}

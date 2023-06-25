@@ -35,3 +35,7 @@ export function getAddrType(item: any) {
 
   return type
 }
+
+export const isNumericOrEmpty = (value: string) => {
+  return /^(\d+|)$/.test(value)
+}

@@ -10,7 +10,12 @@ import InputBox from '../InputBox'
 import Modal from '../modal/Modal'
 import PurpleDot from '../PurpleDot'
 
-const RegistStep5 = () => {
+interface RegistStep5Props {
+  nextClick: () => void
+  prevClick: () => void
+}
+
+const RegistStep5: React.FC<RegistStep5Props> = ({ nextClick, prevClick }) => {
   const customModal = useCustomModal()
 
   const [isRegistryOrder, setIsRegistryOrder] = useState(false)

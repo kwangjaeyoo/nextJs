@@ -1,6 +1,8 @@
 import { t } from 'i18next'
 import { useEffect, useState } from 'react'
 
+import { isNumericOrEmpty } from '@/util/Util'
+
 import InputBox from '../InputBox'
 import { addressData } from './SearchAddressModal'
 
@@ -67,8 +69,7 @@ const DirectAddressLayout: React.FC<DirectAddressLayoutProps> = ({
           placeholder={t('zipcode')!!}
           value={address.zipCode}
           onChange={(value) => {
-            // TODO
-            if (value && !isNaN(parseInt(value))) {
+            if (isNumericOrEmpty(value)) {
               setAddress({ ...address, zipCode: value })
             }
           }}

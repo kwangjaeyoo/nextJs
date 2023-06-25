@@ -110,5 +110,7 @@
   "no_item_name": "Please input the item name.",
   "no_item_price": "Please input the item price.",
   "no_item_url": "Please input the item URL or upload the image. ",
-  "no_item_weight": "Please input the total weight of items."
+  "no_item_weight": "Please input the total weight of items.",
+  "delete_item_msg": "Want to delete? ",
+  "cancel": "Cancel"
 }

@@ -7,7 +7,7 @@ export const colourStyles: StylesConfig<any> = {
     borderColor: state.isFocused ? '#7340BF !important' : '#dbdbdb',
     boxShadow: state.isFocused ? 'none' : styles.boxShadow,
     outline: state.isFocused ? 'none' : styles.outline,
-    height: 42,
+    height: 48,
   }),
   option: (styles, { isFocused, isSelected }) => {
     return {

@@ -18,9 +18,10 @@ interface CustomModalStore {
   obj: {
     msg: string
     btnObject: btnPropInModal
+    secBtnObject?: btnPropInModal
     open: boolean
   }
-  onOpen: (objmsg: string, btnObject?: btnProp) => void
+  onOpen: (msg: string, btnObject?: btnProp, secBtnObject?: btnProp) => void
   onClose: () => void
 }
 
@@ -32,9 +33,14 @@ const useCustomModal = create<CustomModalStore>((set) => ({
       btnText: t('ok'),
       btnBgColor: 'bg-[#7340BF]',
     },
+    secBtnObject: {
+      btnClick: () => {},
+      btnText: t('cancel'),
+      btnBgColor: 'bg-[#7340BF]',
+    },
     open: false,
   },
-  onOpen: (msg, btnObject) =>
+  onOpen: (msg, btnObject, secBtnObject) =>
     set((state) => ({
       ...state,
       obj: {
@@ -50,6 +56,13 @@ const useCustomModal = create<CustomModalStore>((set) => ({
               btnText: t('ok'),
               btnBgColor: 'bg-[#7340BF]',
             },
+        secBtnObject: secBtnObject
+          ? {
+              btnClick: secBtnObject.btnClick || (() => {}),
+              btnText: secBtnObject.btnText || t('cancel'),
+              btnBgColor: secBtnObject.btnBgColor || 'bg-[#7340BF]',
+            }
+          : undefined,
         open: true,
       },
     })),

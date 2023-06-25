@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { t } from 'i18next'
 import { useEffect, useRef, useState } from 'react'
 
@@ -24,13 +25,27 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
   const [addPopup, setAddPopup] = useState(false)
   const [itemModal, setItemModal] = useState(false)
 
+  const nationList = useRef<any[]>([])
+
   useEffect(() => {
     if (didMount.current) {
-      console.log('RegistStep4')
+      getNationList()
+      console.log('RegistStep4 nationList')
     } else {
       didMount.current = true
     }
   }, [])
+
+  const getNationList = async () => {
+    try {
+      const result = await axios.post('/api/callMemberAPI', {
+        apiName: 'GetNationList',
+      })
+      if (result && result.status == 200) {
+        nationList.current = result.data
+      }
+    } catch (e) {}
+  }
 
   useEffect(() => {
     setEnableNextBtn(itemDataList.length > 0 ? 'bg-[#7340BF]' : 'bg-[#dbdbdb]')
@@ -83,16 +98,16 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
           </div>
           <div
             className="
-            flex
-            border 
-            rounded 
-            bg-[#7340BF] 
-            text-white 
-            w-24
-            justify-center
-            items-center 
-            z-10
-            "
+              flex
+              border 
+              rounded 
+              bg-[#7340BF] 
+              text-white 
+              w-24
+              justify-center
+              items-center 
+              z-10
+              "
             onClick={() => {
               if (itemDataList.length < 4) {
                 setAddPopup(!addPopup)
@@ -153,6 +168,7 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
               key={index}
               index={index}
               item={item}
+              nationLists={nationList.current}
               onChange={(value) => {
                 setItemDataList((prevList) => {
                   const newList = [...prevList]
@@ -160,12 +176,21 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
                   return newList
                 })
               }}
-              deleteItem={(index) => {
-                customModal.onOpen('TODO', {
-                  btnClick: () => {
-                    console.log('TODO')
+              deleteItem={(indexRemove) => {
+                customModal.onOpen(
+                  t('delete_item_msg'),
+                  {
+                    btnClick: () => {
+                      setItemDataList((prevList) =>
+                        prevList.filter((_, index) => index !== indexRemove),
+                      )
+                    },
                   },
-                })
+                  {
+                    btnText: t('cancel')!!,
+                    btnBgColor: 'bg-[#dbdbdb]',
+                  },
+                )
               }}
             />
           ))}

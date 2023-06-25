@@ -27,6 +27,13 @@ const CustomModal = () => {
     modalData.onClose()
   }, [modalData])
 
+  const handleSecSubmit = useCallback(() => {
+    if (modalData.obj.secBtnObject && modalData.obj.secBtnObject.btnClick) {
+      modalData.obj.secBtnObject.btnClick()
+    }
+    modalData.onClose()
+  }, [modalData])
+
   if (!modalData.obj.open) {
     return <></>
   }
@@ -111,6 +118,16 @@ const CustomModal = () => {
                   w-full
                 "
               >
+                {modalData.obj.secBtnObject && (
+                  <>
+                    <Button
+                      label={modalData.obj.secBtnObject.btnText}
+                      bgColor={modalData.obj.secBtnObject.btnBgColor}
+                      onClick={handleSecSubmit}
+                    />
+                  </>
+                )}
+
                 <Button
                   label={modalData.obj.btnObject.btnText}
                   bgColor={modalData.obj.btnObject.btnBgColor}
