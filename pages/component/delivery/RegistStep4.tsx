@@ -22,7 +22,6 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
   const [itemDataList, setItemDataList] = useState<any[]>([])
   const [enableNextBtn, setEnableNextBtn] = useState('bg-[#dbdbdb]')
 
-  const [addPopup, setAddPopup] = useState(false)
   const [itemModal, setItemModal] = useState(false)
 
   const nationList = useRef<any[]>([])
@@ -68,7 +67,7 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
           return
         }
 
-        if (data.price.trim().length == 0) {
+        if (data.price == '' || data.price == 0) {
           customModal.onOpen(t('no_item_price'))
           return
         }
@@ -109,20 +108,22 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
               z-10
               "
             onClick={() => {
-              if (itemDataList.length < 4) {
-                setAddPopup(!addPopup)
-              } else {
-                customModal.onOpen(t('msg_allow_total_4_items'))
-              }
+              setItemModal(true)
+              // 일단 말풍선 Add item 은 삭제...
+              // 아이템 추가 시 이미지 처리 추후
+              // if (itemDataList.length < 4) {
+              //   setAddPopup(!addPopup)
+              // } else {
+              //   customModal.onOpen(t('msg_allow_total_4_items'))
+              // }
             }}
           >
             + {t('text_add')}
           </div>
         </div>
 
-        {addPopup && (
+        {/* {addPopup && (
           <>
-            {/*말풍선*/}
             <div
               className="fixed inset-0 bg-[#00000090] z-30"
               onClick={() => setAddPopup(false)}
@@ -160,7 +161,7 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
               </div>
             </div>
           </>
-        )}
+        )} */}
 
         <div className="mt-8">
           {itemDataList.map((item, index) => (
@@ -215,16 +216,20 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
           <ItemListLayout
             selectItem={(item) => {
               setItemModal(false)
+
               const model = {
                 name: item.ITEM_NM,
                 count: '',
                 price: item.item_price,
-                currency: item.currency,
+                currency: item.currency.trim(),
                 weight: item.package_weight,
-                url: item.ITEM_URL,
+                url: item.ITEM_URL ?? '',
                 image: '',
                 imageUrl: item.item_image_url,
               }
+
+              console.log(model)
+
               setItemDataList(itemDataList.concat(model))
             }}
           />

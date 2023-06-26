@@ -27,13 +27,19 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
   const [open, setOpen] = useState(true)
 
   const [itemData, setItemData] = useState(item)
+  const [defCurrencyIndex, setDefCurrencyIndex] = useState(-1)
+
   const [nationlist] = useState(() => {
     let list: { value: any; label: any }[] = []
-    nationLists.map((item) => {
+    nationLists.map((data, index) => {
       list.push({
-        label: item.currency + ' (' + item.nation_nm + ')',
-        value: item.currency,
+        label: data.currency + ' (' + data.nation_nm + ')',
+        value: data.currency,
       })
+
+      if (item.currency === data.currency) {
+        setDefCurrencyIndex(index)
+      }
     })
     return list
   })
@@ -118,9 +124,12 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
               <Select
                 styles={colourStyles}
                 isSearchable={false}
+                defaultValue={() => nationlist[defCurrencyIndex]}
                 options={nationlist}
                 components={{ IndicatorSeparator: () => null }}
-                onChange={() => console.log('TODO')}
+                onChange={(value) =>
+                  setItemData({ ...itemData, currency: value.value })
+                }
               />
             </div>
             <div className="flew w-1/2 ml-1">
@@ -146,13 +155,13 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
           <InputBox
             value={itemData.url}
             onChange={(value) => {
-              console.log('TODO')
+              setItemData({ ...itemData, url: value })
             }}
           />
 
           <div className="flex mt-3 mb-3">{t('item_image')}</div>
           <div className="flex flex-row">
-            <div className="flew w-1/2 mr-1"></div>
+            <div className="flew w-1/2 mr-1">TODO 이미지</div>
             <div className="flew w-1/2 ml-1">{t('msg_upload_image')}</div>
           </div>
         </>

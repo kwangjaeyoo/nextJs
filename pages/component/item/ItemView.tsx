@@ -13,7 +13,12 @@ const ItemView: React.FC<ItemViewProps> = ({ item, click, onClick }) => {
       item.item_image_url.startsWith('http:') ||
       item.item_image_url.startsWith('https:')
     ) {
-      imageURL = item.item_image_url
+      if (
+        item.item_image_url.toLowerCase().endsWith('jpg') ||
+        item.item_image_url.toLowerCase().endsWith('png')
+      ) {
+        imageURL = item.item_image_url
+      }
     }
   }
 
@@ -36,6 +41,7 @@ const ItemView: React.FC<ItemViewProps> = ({ item, click, onClick }) => {
           width={120}
           height={120}
           alt="itemImg"
+          className="w-auto"
           onError={(err) => {
             // console.log(err)
           }}
@@ -45,14 +51,26 @@ const ItemView: React.FC<ItemViewProps> = ({ item, click, onClick }) => {
           <div>{item.ITEM_NM}</div>
 
           <div className="mt-2 flex flew-row h-7 p-1">
-            <Image src={'/ic_price.png'} alt="price" height={18} width={18} />
+            <Image
+              src={'/ic_price.png'}
+              alt="price"
+              height={18}
+              width={18}
+              className="w-auto"
+            />
             <div className="ml-1">
               {item.item_price} {item.currency ? <>({item.currency})</> : ''}
             </div>
           </div>
           {/** TODO 이미지싸이즈가 쪼금 이상한듯 조절이 안됨 */}
           <div className="flex flew-row h-7 p-1">
-            <Image src={'/ic_barcode.png'} alt="price" height={18} width={18} />
+            <Image
+              src={'/ic_barcode.png'}
+              alt="price"
+              height={18}
+              width={18}
+              className="w-auto"
+            />
             <div className="ml-1">{item.barcode ? <>Y</> : <>N</>}</div>
           </div>
         </div>
