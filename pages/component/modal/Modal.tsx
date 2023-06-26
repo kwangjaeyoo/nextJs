@@ -152,7 +152,6 @@ const Modal: React.FC<ModalPops> = ({
                     >
                       {secondaryActionLable && secondaryAction && (
                         <Button
-                          outline
                           disable={disabled}
                           label={secondaryActionLable}
                           onClick={secondaryAction}
