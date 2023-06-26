@@ -113,5 +113,7 @@
   "no_item_url": "상품 URL 또는 이미지를 추가해주세요.",
   "no_item_weight": "상품의 무게 정보를 입력해주세요.",
   "delete_item_msg": "삭제하시겠습니까?",
-  "cancel": "취소"
+  "cancel": "취소",
+  "no_barcode_item": "바코드 없는 상품",
+  "no_image_item": "이미지 없는 상품"
 }
