@@ -7,11 +7,11 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
   images: {
-    remotePatterns: [
-      {
-        protocol: 'http',
-        hostname: 'gd.image-gmkt.com',
-      },
+    domains: [
+      'vpot.image-gmkt.com',
+      'gd.image-gmkt.com',
+      'dp.image-gmkt.com',
+      'youtu.be',
     ],
   },
 }
