@@ -11,7 +11,7 @@ import InputBox from '../InputBox'
 import FullModal from '../modal/FullModal'
 import PurpleDot from '../PurpleDot'
 import RegiBottomLayout from './RegiBottomLayout'
-import { IaddressModel, InationModel } from './RegistDeliveryScreen'
+import { AddressModel, NationModel } from './RegistDeliveryScreen'
 
 const inputTypeList = [
   { value: 'direct', label: t('direct_input') },
@@ -19,9 +19,9 @@ const inputTypeList = [
 ]
 
 interface RegistStep2Props {
-  nationModel: InationModel
-  senderModel: IaddressModel
-  nextClick: (sender: IaddressModel) => void
+  nationModel: NationModel
+  senderModel: AddressModel
+  nextClick: (sender: AddressModel) => void
   prevClick: () => void
 }
 

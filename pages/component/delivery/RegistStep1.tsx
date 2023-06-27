@@ -11,11 +11,11 @@ import { colourStyles } from '@/util/SelectStyle'
 
 import Checkbox from '../Checkbox'
 import PurpleDot from '../PurpleDot'
-import { InationModel } from './RegistDeliveryScreen'
+import { NationModel } from './RegistDeliveryScreen'
 
 interface RegistStep1Props {
-  nationModel: InationModel
-  nextClick: (nationModel: InationModel) => void
+  nationModel: NationModel
+  nextClick: (nationModel: NationModel) => void
 }
 
 const RegistStep1: React.FC<RegistStep1Props> = ({

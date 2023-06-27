@@ -7,12 +7,12 @@ import SearchAddressModal from '../address/SearchAddressModal'
 import InputBox from '../InputBox'
 import PurpleDot from '../PurpleDot'
 import RegiBottomLayout from './RegiBottomLayout'
-import { IaddressModel, InationModel } from './RegistDeliveryScreen'
+import { AddressModel, NationModel } from './RegistDeliveryScreen'
 
 interface RegistStep3Props {
-  nationModel: InationModel
-  recipientModel: IaddressModel
-  nextClick: (recipt: IaddressModel) => void
+  nationModel: NationModel
+  recipientModel: AddressModel
+  nextClick: (recipt: AddressModel) => void
   prevClick: () => void
 }
 

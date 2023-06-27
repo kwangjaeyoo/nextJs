@@ -1,6 +1,6 @@
 import { t } from 'i18next'
 import Image from 'next/image'
-import React, { MouseEvent, useEffect, useState } from 'react'
+import React, { MouseEvent, useEffect, useRef, useState } from 'react'
 import Select from 'react-select'
 
 import { colourStyles } from '@/util/SelectStyle'
@@ -24,9 +24,25 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
   deleteItem,
   onChange,
 }) => {
+  const didMount = useRef(false)
   const [open, setOpen] = useState(true)
 
-  const [itemData, setItemData] = useState(item)
+  const [itemData, setItemData] = useState(() => {
+    console.log(item)
+
+    if (
+      item.imageUrl.trim().length == 0 ||
+      !(
+        item.imageUrl.toLowerCase().endsWith('jpg') ||
+        item.imageUrl.toLowerCase().endsWith('png')
+      )
+    ) {
+      item.imageUrl = '/item_no_image.png'
+    }
+
+    return item
+  })
+
   const [defCurrencyIndex, setDefCurrencyIndex] = useState(-1)
 
   const [nationlist] = useState(() => {
@@ -48,6 +64,14 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
     deleteItem(index)
     event.stopPropagation()
   }
+
+  useEffect(() => {
+    if (didMount.current) {
+      console.log('DeliveryItem')
+    } else {
+      didMount.current = true
+    }
+  }, [])
 
   useEffect(() => {
     onChange(itemData)
@@ -161,12 +185,36 @@ const DeliveryItem: React.FC<DeliveryItemProps> = ({
 
           <div className="flex mt-3 mb-3">{t('item_image')}</div>
           <div className="flex flex-row">
-            <div className="flew w-1/2 mr-1">TODO 이미지</div>
+            <div className="flew w-1/2 mr-1">
+              <Image
+                src={itemData.imageUrl}
+                height={200}
+                width={200}
+                alt="item"
+              />
+            </div>
             <div className="flew w-1/2 ml-1">{t('msg_upload_image')}</div>
           </div>
         </>
       ) : (
-        <div className="mt-4 mb-2">close layout TODO </div>
+        <div className="flex flex-row mt-4 mb-2">
+          <div className="flew w-1/2 mr-1">
+            <Image
+              src={itemData.imageUrl}
+              height={200}
+              width={200}
+              alt="item"
+            />
+          </div>
+          <div className="flex items-center">
+            <div>
+              <div>{item.name}</div>
+              <div>
+                {item.price} {item.currency}
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   )

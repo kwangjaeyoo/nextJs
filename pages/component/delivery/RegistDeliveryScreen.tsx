@@ -11,14 +11,14 @@ import RegistStep4 from './RegistStep4'
 import RegistStep5 from './RegistStep5'
 import RegistStep6 from './RegistStep6'
 
-export interface InationModel {
+export interface NationModel {
   search_from: string
   search_fromCode: string
   search_to: string
   search_toCode: string
 }
 
-export interface IaddressModel {
+export interface AddressModel {
   name: string
   zipCode: string
   frontAddress: string
@@ -45,14 +45,14 @@ const RegistDeliveryScreen = () => {
     }
   }, [])
 
-  const nationModel = useRef<InationModel>({
+  const nationModel = useRef<NationModel>({
     search_from: '',
     search_fromCode: '',
     search_to: '',
     search_toCode: '',
   })
 
-  const senderModel = useRef<IaddressModel>({
+  const senderModel = useRef<AddressModel>({
     name: '',
     zipCode: '',
     frontAddress: '',
@@ -64,7 +64,7 @@ const RegistDeliveryScreen = () => {
     email: '',
   })
 
-  const recipientModel = useRef<IaddressModel>({
+  const recipientModel = useRef<AddressModel>({
     name: '',
     zipCode: '',
     frontAddress: '',
@@ -76,18 +76,25 @@ const RegistDeliveryScreen = () => {
     email: '',
   })
 
-  const goSenderInputStep = (nation: InationModel) => {
+  const itemLists = useRef<any[]>([])
+
+  const goSenderInputStep = (nation: NationModel) => {
     nationModel.current = nation
     setPosition(position + 1)
   }
 
-  const goRevInputStep = (sender: IaddressModel) => {
+  const goRevInputStep = (sender: AddressModel) => {
     senderModel.current = sender
     setPosition(position + 1)
   }
 
-  const goItmeInputStep = (recipModel: IaddressModel) => {
+  const goItmeInputStep = (recipModel: AddressModel) => {
     recipientModel.current = recipModel
+    setPosition(position + 1)
+  }
+
+  const goPickupReqStep = (itemList: any[]) => {
+    itemLists.current = itemList
     setPosition(position + 1)
   }
 
@@ -126,7 +133,7 @@ const RegistDeliveryScreen = () => {
       )}
       {position == 4 && (
         <RegistStep4
-          nextClick={() => console.log('TODO')}
+          nextClick={goPickupReqStep}
           prevClick={() => setPosition(3)}
         />
       )}

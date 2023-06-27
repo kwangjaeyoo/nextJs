@@ -77,7 +77,7 @@ const RegistStep4: React.FC<RegistStep4Props> = ({ nextClick, prevClick }) => {
           return
         }
 
-        if (data.url.trim().length == 0 && data.imageUrl.trim().length) {
+        if (data.url.trim().length == 0 && data.imageUrl.trim().length == 0) {
           customModal.onOpen(t('no_item_url'))
           return
         }
